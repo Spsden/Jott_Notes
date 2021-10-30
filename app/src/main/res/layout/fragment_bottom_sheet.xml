@@ -21,29 +21,29 @@
         android:textStyle="bold"/>
 
     <LinearLayout
-        android:clickable="true"
         android:id="@+id/Notes_add"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@drawable/bottom_sheet_boxes"
         android:layout_height="wrap_content"
         android:layout_marginVertical="7dp"
-        android:padding="8dp"
-        android:focusable="true">
+        android:background="@drawable/bottom_sheet_boxes"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:padding="8dp">
 
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Notes"
-            android:fontFamily="@font/montserratsemibold"
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:fontFamily="@font/montserratsemibold"
+            android:text="Notes"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

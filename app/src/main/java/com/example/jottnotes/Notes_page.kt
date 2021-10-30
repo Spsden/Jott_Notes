@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_notes_page.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Notes_page : Fragment() {
 
@@ -32,5 +35,24 @@ class Notes_page : Fragment() {
 
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+        val CurrentDate = sdf.format(Date())
+
+        date.text = CurrentDate
+
+        note_back_button.setOnClickListener{
+            saveNote()
+
+
+        }
+    }
+
+    private fun saveNote(){
+
     }
 }
