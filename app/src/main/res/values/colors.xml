@@ -8,10 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="background_blue">#201e2c</color>
-    <color name="yellow_shades">#6f6fc8</color>
+    <color name="background_blue">#030800</color>
+    <color name="yellow_shades">#585EFF</color>
     <color name="text_grey">#5f5e6d</color>
-    <color name="bottom_sheet">#3c3c54</color>
-    <color name="purple_box">#6d76c8</color>
+    <color name="bottom_sheet">#585EFF</color>
+    <color name="purple_box">#030800</color>
+    <color name="scroll_viewGrey">#232323</color>
 
 </resources>
