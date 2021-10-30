@@ -9,7 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_bottom_sheet.*
 
 
-class Bottom_sheet : BottomSheetDialogFragment(){
+class BottomSheet : BottomSheetDialogFragment(){
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,13 +19,15 @@ class Bottom_sheet : BottomSheetDialogFragment(){
         return inflater.inflate(R.layout.fragment_bottom_sheet , container , false)
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//        Notes_add.setOnClickListener {
-//
-//        }
-//
-//
-//    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+        Notes_add.setOnClickListener {
+
+        }
+
+
+    }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_blue"
-    tools:context=".Main_page">
+    tools:context=".Mainpage">
     <LinearLayout
         android:id="@+id/header_title"
         android:layout_width="match_parent"
