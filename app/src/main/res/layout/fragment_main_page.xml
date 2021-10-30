@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_blue"
+    tools:context=".Main_page">
+    <LinearLayout
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserratbold"
+            android:letterSpacing="0.03"
+            android:layout_marginTop="5dp"
+            android:text="@string/jott_notes"
+            android:textColor="@color/white"
+            android:layout_weight="90"
+            android:textSize="32sp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search_24"
+            android:layout_weight="5"
+            android:layout_margin="5dp"
+            android:background="@drawable/rounded_button" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu_24"
+            android:layout_margin="5dp"
+            android:background="@drawable/rounded_button"
+            android:layout_weight="5"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        app:tabTextColor="@color/white"
+        app:tabSelectedTextColor="@color/yellow_shades"
+        app:tabIndicatorColor="@color/yellow_shades"
+        app:layout_constraintTop_toBottomOf="@id/header_title"
+        android:layout_height="wrap_content"
+        android:background="@color/background_blue">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/home_tab"
+            android:text="@string/all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/folders_tab"
+            android:text="@string/folders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabs"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_baseline_add_24"
+        app:fabCustomSize="70dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:backgroundTint="@color/yellow_shades" >
+
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
