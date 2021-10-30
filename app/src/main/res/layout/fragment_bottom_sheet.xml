@@ -14,49 +14,52 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Quotes here"
-        android:textColor="@color/black"
-        android:layout_marginTop="5dp"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
-
+        android:text="If you are good at something never do it for free"
+        android:textColor="@color/white"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:textSize="17dp"
+        android:fontFamily="@font/montserratitalic"
+        />
     <LinearLayout
-        android:id="@+id/Notes_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="7dp"
-        android:background="@drawable/bottom_sheet_boxes"
+        android:layout_marginHorizontal="10dp"
         android:clickable="true"
-        android:focusable="true"
+        android:id="@+id/Notes_add"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:layout_width="match_parent"
+        android:background="@drawable/bottom_sheet_boxes"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:padding="11dp"
+        android:focusable="true">
 
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:fontFamily="@font/montserratsemibold"
-            android:text="Notes"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:text="Notes"
+            android:fontFamily="@font/montserratmedium"
+            android:layout_marginLeft="30dp"
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginHorizontal="10dp"
         android:clickable="true"
         android:id="@+id/layoutShare"
         android:orientation="horizontal"
         android:background="@drawable/bottom_sheet_boxes"
-        android:layout_marginVertical="7dp"
+        android:layout_marginVertical="10dp"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="11dp"
         android:focusable="true">
 
 
@@ -68,23 +71,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:fontFamily="@font/montserratsemibold"
+            android:fontFamily="@font/montserratmedium"
             android:text="Todo"
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginHorizontal="10dp"
         android:clickable="true"
         android:id="@+id/layoutUpload"
         android:orientation="horizontal"
         android:background="@drawable/bottom_sheet_boxes"
-        android:layout_marginVertical="7dp"
+        android:layout_marginVertical="10dp"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="11dp"
         android:focusable="true">
 
 
@@ -97,22 +101,23 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="Scanner"
-            android:fontFamily="@font/montserratsemibold"
+            android:fontFamily="@font/montserratmedium"
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginHorizontal="10dp"
         android:clickable="true"
         android:id="@+id/layoutPrint"
         android:orientation="horizontal"
         android:background="@drawable/bottom_sheet_boxes"
-        android:layout_marginVertical="7dp"
+        android:layout_marginVertical="10dp"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="11dp"
         android:focusable="true">
 
 
@@ -124,10 +129,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Miscellanous"
-            android:fontFamily="@font/montserratsemibold"
+            android:fontFamily="@font/montserratmedium"
             android:textColor="@color/white"
             android:layout_marginLeft="30dp"
-            android:textSize="16sp"/>
+            android:textSize="18sp"/>
 
     </LinearLayout>
 
