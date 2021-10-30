@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_blue"
-    tools:context=".Main_page">
+    tools:context=".Mainpage">
     <LinearLayout
         android:id="@+id/header_title"
         android:layout_width="match_parent"
@@ -20,28 +20,32 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratbold"
+            android:fontFamily="@font/montserratsemibold"
             android:letterSpacing="0.03"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="9dp"
             android:text="@string/jott_notes"
             android:textColor="@color/white"
             android:layout_weight="90"
-            android:textSize="32sp" />
+            android:textSize="29sp" />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/search_24"
-            android:layout_weight="5"
-            android:layout_margin="5dp"
-            android:background="@drawable/rounded_button" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/search"
+            android:maxHeight="1dp"
+            android:layout_weight="2"
+            android:layout_marginTop="10dp"
+            android:background="@color/background_blue"
+            />
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/menu_24"
-            android:layout_margin="5dp"
-            android:background="@drawable/rounded_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/menu"
+            android:layout_marginTop="10dp"
+
+            android:background="@color/background_blue"
             android:layout_weight="5"/>
 
     </LinearLayout>
@@ -71,7 +75,9 @@
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
+    android:background="@drawable/scrollview"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tabs"/>
 
@@ -80,10 +86,11 @@
         android:id="@+id/floating_action_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="35dp"
         android:scaleType="center"
-        android:src="@drawable/ic_baseline_add_24"
-        app:fabCustomSize="70dp"
+        android:src="@drawable/add"
+        app:fabCustomSize="55dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
