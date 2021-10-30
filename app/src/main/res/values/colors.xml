@@ -13,5 +13,5 @@
     <color name="text_grey">#5f5e6d</color>
     <color name="bottom_sheet">#585EFF</color>
     <color name="purple_box">#030800</color>
-
+    <color name="scroll_viewGrey">#232323</color>
 </resources>
