@@ -8,11 +8,11 @@
     tools:context=".Notes_page">
 
     <LinearLayout
-        android:background="@color/background_blue"
         android:id="@+id/lltop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:background="@color/background_blue"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@id/notes_title"
@@ -21,11 +21,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:layout_marginTop="08dp"
-            android:layout_marginLeft="7dp"
             android:id="@+id/note_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="08dp"
             android:background="@drawable/back">
 
         </ImageButton>
@@ -38,19 +38,18 @@
             android:letterSpacing="0.02"
             android:text="@string/notes"
             android:textColor="@color/white"
-            android:textSize="28sp"
-             />
+            android:textSize="28sp" />
 
     </LinearLayout>
 
 
     <EditText
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="25dp"
-        android:background="@drawable/scrollview"
         android:id="@+id/notes_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="25dp"
+        android:background="@drawable/scrollview"
         android:ellipsize="end"
         android:fontFamily="@font/montserratsemibold"
         android:hint="@string/title"
@@ -69,11 +68,11 @@
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="30dp"
         android:layout_marginLeft="40dp"
         android:fontFamily="@font/montserratsemibold"
         android:hint="date"
         android:inputType="date"
-        android:layout_marginVertical="30dp"
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="@color/text_grey"
@@ -90,11 +89,11 @@
 
     <EditText
         android:id="@+id/notes_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="25dp"
         android:background="@drawable/scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="290dp"
         android:fontFamily="@font/montserratregular"
         android:hint="@string/your_note_here"
         android:inputType="textMultiLine"
@@ -112,19 +111,16 @@
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_baseline_image_24"/>
-
+            android:background="@drawable/ic_baseline_image_24" />
 
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

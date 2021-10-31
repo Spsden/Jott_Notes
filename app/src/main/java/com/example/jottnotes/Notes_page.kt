@@ -45,14 +45,14 @@ class Notes_page : Fragment() {
 
         date.text = CurrentDate
 
-        note_back_button.setOnClickListener{
+        note_back_button.setOnClickListener {
             saveNote()
 
 
         }
     }
 
-    private fun saveNote(){
+    private fun saveNote() {
 
     }
 }

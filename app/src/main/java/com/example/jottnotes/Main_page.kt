@@ -35,16 +35,13 @@ class Mainpage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       val manager: FragmentManager = (this.context as AppCompatActivity).supportFragmentManager
+        val manager: FragmentManager = (this.context as AppCompatActivity).supportFragmentManager
 
         floating_action_button.setOnClickListener {
             BottomSheet().show(manager, ContentValues.TAG)
         }
 
-        }
-
-
-
+    }
 
 
 }
