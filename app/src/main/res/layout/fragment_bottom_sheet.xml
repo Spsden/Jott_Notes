@@ -102,16 +102,16 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_scanner"
-            android:layout_marginLeft="30dp"/>
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_scanner" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratmedium"
-            android:text="Scanner"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Scanner"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -134,14 +134,14 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_misc"
-            android:layout_marginStart="30dp"/>
+            android:layout_marginStart="30dp"
+            android:src="@drawable/ic_misc" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_gravity="center"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/montserratmedium"
             android:text="Miscellanous"
             android:textColor="@color/white"
