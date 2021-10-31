@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratsemibold"
+            android:fontFamily="@font/josefinsanssemibold"
             android:letterSpacing="0.03"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="9dp"
