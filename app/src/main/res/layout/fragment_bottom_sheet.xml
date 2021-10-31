@@ -36,7 +36,9 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_notes"
+            android:layout_marginStart="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,7 +46,8 @@
             android:textColor="@color/white"
             android:text="Notes"
             android:fontFamily="@font/montserratmedium"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -65,7 +68,9 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_todo"
+            android:layout_marginStart="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,7 +78,8 @@
             android:textColor="@color/white"
             android:fontFamily="@font/montserratmedium"
             android:text="Todo"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -94,7 +100,9 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_scanner"
+            android:layout_marginStart="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,7 +110,8 @@
             android:textColor="@color/white"
             android:text="Scanner"
             android:fontFamily="@font/montserratmedium"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center"
             android:textSize="18sp"/>
 
     </LinearLayout>
@@ -123,7 +132,9 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_misc"
+            android:layout_marginStart="30dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -131,7 +142,8 @@
             android:text="Miscellanous"
             android:fontFamily="@font/montserratmedium"
             android:textColor="@color/white"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center"
             android:textSize="18sp"/>
 
     </LinearLayout>

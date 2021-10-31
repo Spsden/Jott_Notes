@@ -47,6 +47,7 @@ class Notes_page : Fragment() {
 
         note_back_button.setOnClickListener{
             saveNote()
+            replaceFragment(Mainpage(),true)
 
 
         }
@@ -55,4 +56,17 @@ class Notes_page : Fragment() {
     private fun saveNote(){
 
     }
+
+    fun replaceFragment(fragment: Fragment , istransition : Boolean)
+    {
+        val manager = requireActivity().supportFragmentManager
+        val transaction = manager.beginTransaction()
+
+        if (istransition){
+            transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+        }
+        transaction.replace(R.id.notes_page,fragment).commit()
+    }
+
+
 }
