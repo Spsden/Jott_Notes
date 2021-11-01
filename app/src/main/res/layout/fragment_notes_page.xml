@@ -16,6 +16,7 @@
         android:background="@color/background_blue"
         android:orientation="horizontal"
         android:padding="10dp"
+        android:weightSum="100"
         app:layout_constraintBottom_toTopOf="@id/notes_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,14 @@
             android:letterSpacing="0.02"
             android:text="@string/notes"
             android:textColor="@color/white"
+            android:layout_weight="98"
             android:textSize="28sp" />
+        <ImageButton
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_notes"
+            android:background="@color/background_blue" />
 
     </LinearLayout>
 
@@ -98,15 +106,17 @@
         android:fontFamily="@font/montserratregular"
         android:hint="@string/your_note_here"
         android:inputType="textMultiLine"
-        android:padding="10dp"
+        android:padding="15dp"
         android:textColor="#DFD8CA"
         android:textColorHint="@color/text_grey"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/notes_title" />
+        app:layout_constraintTop_toBottomOf="@id/notes_title"
+        app:layout_constraintBottom_toTopOf="2"/>
 
     <LinearLayout
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

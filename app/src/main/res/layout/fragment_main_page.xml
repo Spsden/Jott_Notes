@@ -31,14 +31,13 @@
             android:textSize="29sp" />
 
         <ImageButton
-            android:layout_width="40dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:src="@drawable/search"
-            android:maxHeight="1dp"
-            android:layout_weight="2"
             android:layout_marginTop="10dp"
+            android:layout_weight="2"
             android:background="@color/background_blue"
-            />
+            android:maxHeight="1dp"
+            android:src="@drawable/search" />
 
         <ImageButton
             android:layout_width="40dp"
