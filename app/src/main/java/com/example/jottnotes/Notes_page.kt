@@ -1,12 +1,13 @@
 package com.example.jottnotes
 
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.compose.ui.platform.textInputServiceFactory
+
 import com.codingwithme.notesapp.database.NotesDatabase
 import com.codingwithme.notesapp.entities.Notes
 import kotlinx.android.synthetic.main.fragment_notes_page.*
@@ -15,7 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class Notes_page : BaseFragment() {
-    var currentDate:String? = null
+    var currentDate: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,22 +33,13 @@ class Notes_page : BaseFragment() {
         return inflater.inflate(R.layout.fragment_notes_page, container, false)
     }
 
-    companion object {
 
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Notes_page().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         var sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-         currentDate = sdf.format(Date())
+        currentDate = sdf.format(Date())
 
         date.text = currentDate
 
@@ -78,9 +70,8 @@ class Notes_page : BaseFragment() {
             }
 
         }
-
-
     }
+
 
     fun replaceFragment(fragment: Fragment, istransition: Boolean) {
         val manager = requireActivity().supportFragmentManager

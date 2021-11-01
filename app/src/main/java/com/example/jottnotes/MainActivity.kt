@@ -3,7 +3,6 @@ package com.example.jottnotes
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.jottnotes.Notes_page.Companion.newInstance
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +11,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        replaceFragment(Mainpage(),true)
+
+
+
+        replaceFragment(Mainpage(), true)
     }
 
     //this is to change from mainactivity to main_page fragment.
@@ -21,14 +23,17 @@ class MainActivity : AppCompatActivity() {
     //also this same function has the replace(one you are in, the one you want to go)
     //the addtobackstack is a stack maker function.
 
-    private fun replaceFragment(fragment:Fragment, istransition:Boolean) {
+    private fun replaceFragment(fragment: Fragment, istransition: Boolean) {
         val fragmentTransition = supportFragmentManager.beginTransaction()
 
-        if (istransition)
-        {
-            fragmentTransition.setCustomAnimations(android.R.anim.slide_out_right,android.R.anim.slide_in_left)
+        if (istransition) {
+            fragmentTransition.setCustomAnimations(
+                android.R.anim.slide_out_right,
+                android.R.anim.slide_in_left
+            )
 
         }
-        fragmentTransition.replace(R.id.frame_layout,fragment).addToBackStack(fragment.javaClass.simpleName).commit()
+        fragmentTransition.replace(R.id.frame_layout, fragment)
+            .addToBackStack(fragment.javaClass.simpleName).commit()
     }
 }

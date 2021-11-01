@@ -59,7 +59,10 @@ class Mainpage : Fragment() {
             if (tabLayout != null) {
                 TabLayoutMediator(tabLayout, viewpager2){tab,position ->
 
-                    tab.text = "Notes"
+                    when(position){
+                        0 -> tab.text = "Notes"
+                        1 -> tab.text = "Folders"
+                    }
                 }.attach()
             }
         }

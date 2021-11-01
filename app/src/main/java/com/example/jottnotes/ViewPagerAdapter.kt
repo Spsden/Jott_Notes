@@ -21,7 +21,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager,lifecycle: Lifecycle):
     override fun createFragment(position: Int): Fragment {
        when (position){
            0 -> return RvFragment()
-           1 -> return RvFragment()
+           1 -> return FolderFragment()
        }
         return RvFragment()
     }
