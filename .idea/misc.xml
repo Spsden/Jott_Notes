@@ -24,6 +24,7 @@
         <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/drawable/ic_notes.xml" value="0.296875" />
         <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/drawable/ic_scanner.xml" value="0.296875" />
         <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/drawable/ic_todo.xml" value="0.296875" />
+        <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/drawable/scrollview.xml" value="0.296875" />
         <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.2906422120065326" />
         <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/layout/fragment_home.xml" value="0.1" />
@@ -33,6 +34,7 @@
         <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/layout/fragment_rv.xml" value="0.24139492753623187" />
         <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/layout/fragment_scrolling.xml" value="0.16394927536231885" />
         <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/layout/home_grids.xml" value="0.1" />
+        <entry key="..\:/android_projects/Latestproject/Jott_Notes/app/src/main/res/layout/rvcard.xml" value="0.2906422120065326" />
       </map>
     </option>
   </component>
