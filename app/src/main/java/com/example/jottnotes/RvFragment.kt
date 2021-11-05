@@ -5,9 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.coroutines.launch
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.codingwithme.notesapp.database.NotesDatabase
+import kotlinx.android.synthetic.main.fragment_rv.*
+import kotlinx.coroutines.coroutineScope
 
 
-class RvFragment : Fragment() {
+class RvFragment : BaseFragment() {
+
+//    var arrNotes = ArrayList<Notes>()
+//    var notesAdapter: NotesAdapter = NotesToRvAdapter()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,18 +29,24 @@ class RvFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_rv, container, false)
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RvFragment().apply {
-                arguments = Bundle().apply {
+        main_page_rv.setHasFixedSize(true)
+        main_page_rv.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
 
-                }
+        launch {
+            context?.let {
+                var notes = NotesDatabase.getDatabase(it).noteDao().getAllNotes()
+                main_page_rv.adapter = NotesToRvAdapter(notes)
+
+
             }
+        }
     }
+
+
 }

@@ -56,9 +56,14 @@
         android:id="@+id/notes_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="25dp"
         android:background="@drawable/scrollview"
+=======
+        android:layout_margin="10dp"
+        android:background="@null"
+>>>>>>> Sp_main
         android:ellipsize="end"
         android:fontFamily="@font/montserratsemibold"
         android:hint="@string/title"
@@ -77,13 +82,20 @@
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginVertical="30dp"
         android:layout_marginLeft="40dp"
+=======
+        android:layout_margin="10dp"
+        android:background="@null"
+        android:ellipsize="end"
+>>>>>>> Sp_main
         android:fontFamily="@font/montserratsemibold"
         android:hint="date"
         android:inputType="date"
         android:maxLines="1"
         android:padding="10dp"
+
         android:textColor="@color/text_grey"
         android:textColorHint="@color/text_grey"
         android:textSize="12sp"
@@ -100,9 +112,14 @@
         android:id="@+id/notes_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="25dp"
         android:background="@drawable/scrollview"
+=======
+        android:layout_margin="10dp"
+        android:background="@null"
+>>>>>>> Sp_main
         android:fontFamily="@font/montserratregular"
         android:hint="@string/your_note_here"
         android:inputType="textMultiLine"
@@ -110,6 +127,7 @@
         android:textColor="#DFD8CA"
         android:textColorHint="@color/text_grey"
         android:textSize="16sp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/notes_title"

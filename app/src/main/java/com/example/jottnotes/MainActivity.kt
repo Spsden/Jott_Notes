@@ -3,7 +3,6 @@ package com.example.jottnotes
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.jottnotes.Notes_page.Companion.newInstance
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,6 +11,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> Sp_main
         replaceFragment(Mainpage(), true)
     }
 
