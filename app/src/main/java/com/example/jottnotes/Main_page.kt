@@ -42,6 +42,9 @@ class Mainpage : Fragment() {
 
         //for bottom sheet transaction
         val manager: FragmentManager = (this.context as AppCompatActivity).supportFragmentManager
+
+        
+ 
         floating_action_button.setOnClickListener {
             BottomSheet().show(manager, ContentValues.TAG)
         }
@@ -66,6 +69,8 @@ class Mainpage : Fragment() {
                 }.attach()
             }
         }
+
+
 
 
 

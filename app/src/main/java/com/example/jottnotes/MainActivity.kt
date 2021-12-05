@@ -12,8 +12,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
         replaceFragment(Mainpage(), true)
     }
 

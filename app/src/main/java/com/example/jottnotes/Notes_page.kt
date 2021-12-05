@@ -78,6 +78,7 @@ class NotesPage : BaseFragment() {
     }
 
     private fun saveNote() {
+
         if (notes_title.text.isNullOrEmpty()) {
             Toast.makeText(context, "Title Required", Toast.LENGTH_SHORT).show()
         }
@@ -93,6 +94,8 @@ class NotesPage : BaseFragment() {
                 notes_desc.setText("")
                 notes_title.setText("")
                 requireActivity().supportFragmentManager.popBackStack()
+
+
 
             }
 

@@ -14,6 +14,7 @@
     <color name="bottom_sheet">#585EFF</color>
     <color name="purple_box">#030800</color>
     <color name="scroll_viewGrey">#232323</color>
+a
 
     <color name="ColorDefaultNote">#606570</color>
     <color name="ColorBlueNote">#4e33ff</color>
@@ -23,5 +24,6 @@
     <color name="ColorGreenNote">#0aebaf</color>
     <color name="ColorOrangeNote">#ff7746</color>
     <color name="ColorBlackNote">#202734</color>
+
 
 </resources>

@@ -1,150 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet"
+    android:orientation="vertical"
     app:behavior_hideable="false"
     app:behavior_peekHeight="32dp"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:background="@drawable/bottom_sheet">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <TextView
         android:id="@+id/choosetxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="If you are good at something never do it for free"
-        android:textColor="@color/white"
-        android:layout_marginVertical="10dp"
         android:layout_marginHorizontal="10dp"
-        android:textSize="17dp"
+        android:layout_marginVertical="10dp"
         android:fontFamily="@font/montserratitalic"
-        />
+        android:text="If you are good at something never do it for free"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="17dp" />
+
     <LinearLayout
-        android:layout_marginHorizontal="10dp"
-        android:clickable="true"
         android:id="@+id/Notes_add"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@drawable/bottom_sheet_boxes"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="10dp"
-        android:padding="11dp"
-        android:focusable="true">
+        android:background="@drawable/bottom_sheet_boxes"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:padding="11dp">
 
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_notes"
-            android:layout_marginStart="30dp"/>
+            android:layout_marginStart="30dp"
+            android:src="@drawable/ic_notes" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Notes"
-            android:fontFamily="@font/montserratmedium"
-            android:layout_marginStart="20dp"
             android:layout_gravity="center"
-            android:textSize="18sp"/>
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Notes"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginHorizontal="10dp"
-        android:clickable="true"
         android:id="@+id/layoutShare"
-        android:orientation="horizontal"
-        android:background="@drawable/bottom_sheet_boxes"
-        android:layout_marginVertical="10dp"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="11dp"
-        android:focusable="true">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/bottom_sheet_boxes"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:padding="11dp">
 
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_todo"
-            android:layout_marginStart="30dp"/>
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_todo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+
             android:fontFamily="@font/montserratmedium"
             android:text="Todo"
-            android:layout_marginStart="20dp"
-            android:layout_gravity="center"
-            android:textSize="18sp"/>
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginHorizontal="10dp"
-        android:clickable="true"
         android:id="@+id/layoutUpload"
-        android:orientation="horizontal"
-        android:background="@drawable/bottom_sheet_boxes"
-        android:layout_marginVertical="10dp"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="11dp"
-        android:focusable="true">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/bottom_sheet_boxes"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:padding="11dp">
 
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_scanner"
-            android:layout_marginStart="30dp"/>
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_scanner" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Scanner"
-            android:fontFamily="@font/montserratmedium"
-            android:layout_marginStart="20dp"
             android:layout_gravity="center"
-            android:textSize="18sp"/>
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Scanner"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginHorizontal="10dp"
-        android:clickable="true"
         android:id="@+id/layoutPrint"
-        android:orientation="horizontal"
-        android:background="@drawable/bottom_sheet_boxes"
-        android:layout_marginVertical="10dp"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="11dp"
-        android:focusable="true">
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/bottom_sheet_boxes"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:padding="11dp">
 
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_misc"
-            android:layout_marginStart="30dp"/>
+            android:layout_marginStart="30dp"
+            android:src="@drawable/ic_misc" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Miscellanous"
-            android:fontFamily="@font/montserratmedium"
-            android:textColor="@color/white"
-            android:layout_marginStart="20dp"
             android:layout_gravity="center"
-            android:textSize="18sp"/>
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/montserratmedium"
+            android:text="Miscellanous"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
 
     </LinearLayout>
 

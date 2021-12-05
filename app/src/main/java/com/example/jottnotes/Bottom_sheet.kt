@@ -14,11 +14,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_bottom_sheet.*
 
 
-class BottomSheet : BottomSheetDialogFragment(){
+class BottomSheet : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = BottomSheetDialog(requireContext(), theme)
-
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
+        BottomSheetDialog(requireContext(), theme)
 
 
     override fun onCreateView(
@@ -26,7 +26,7 @@ class BottomSheet : BottomSheetDialogFragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_bottom_sheet , container , false)
+        return inflater.inflate(R.layout.fragment_bottom_sheet, container, false)
 
 
     }
@@ -37,30 +37,31 @@ class BottomSheet : BottomSheetDialogFragment(){
 
 
         Notes_add.setOnClickListener {
+
             replaceFragment(NotesPage(),true)
             Toast.makeText(context,"this is toast message",Toast.LENGTH_SHORT).show()
+
             dismiss()
         }
 
 
     }
 
-    fun replaceFragment(fragment: Fragment, istransition : Boolean)
-    {
+    fun replaceFragment(fragment: Fragment, istransition: Boolean) {
         val editNotes = fragment
         val manager = requireActivity().supportFragmentManager
         val transaction = manager.beginTransaction()
 
-        if (istransition){
-            transaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+        if (istransition) {
+            transaction.setCustomAnimations(
+                android.R.anim.slide_in_left,
+                android.R.anim.slide_out_right
+            )
 
         }
 
 
         transaction.replace(R.id.frame_layout, editNotes).addToBackStack(null).commit()
-
-
-
 
 
     }

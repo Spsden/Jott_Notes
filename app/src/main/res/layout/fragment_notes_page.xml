@@ -12,7 +12,8 @@
         android:id="@+id/lltop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/background_blue"
         android:orientation="horizontal"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@id/notes_title"
@@ -24,6 +25,8 @@
             android:id="@+id/note_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="08dp"
             android:background="@drawable/back">
 
         </ImageButton>
@@ -31,13 +34,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:fontFamily="@font/montserratregular"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/josefinsanssemibold"
             android:letterSpacing="0.02"
             android:text="@string/notes"
-            android:textColor="#2A6B8F"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textColor="@color/white"
+            android:textSize="28sp" />
 
     </LinearLayout>
 
@@ -46,14 +48,20 @@
         android:id="@+id/notes_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_margin="10dp"
         android:background="@null"
+
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="25dp"
+        android:background="@drawable/scrollview"
+
         android:ellipsize="end"
         android:fontFamily="@font/montserratsemibold"
         android:hint="@string/title"
         android:letterSpacing="0.1"
         android:maxLines="1"
-        android:padding="10dp"
+        android:padding="15dp"
         android:textColor="@color/white"
         android:textColorHint="@color/text_grey"
         android:textSize="20sp"
@@ -66,9 +74,14 @@
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_margin="10dp"
         android:background="@null"
         android:ellipsize="end"
+
+        android:layout_marginVertical="30dp"
+        android:layout_marginLeft="40dp"
+
         android:fontFamily="@font/montserratsemibold"
         android:hint="date"
         android:inputType="date"
@@ -91,13 +104,19 @@
         android:id="@+id/notes_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_margin="10dp"
         android:background="@null"
+
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="25dp"
+        android:background="@drawable/scrollview"
+
         android:fontFamily="@font/montserratregular"
         android:hint="@string/your_note_here"
         android:inputType="textMultiLine"
         android:padding="10dp"
-        android:textColor="@color/text_grey"
+        android:textColor="#DFD8CA"
         android:textColorHint="@color/text_grey"
         android:textSize="16sp"
 
