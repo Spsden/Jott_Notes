@@ -73,15 +73,19 @@
             android:layout_height="wrap_content"/>
     </com.google.android.material.tabs.TabLayout>
 
+
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/View_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-    android:background="@drawable/scrollview"
-        android:layout_marginVertical="20dp"
         android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="20dp"
+        android:background="@drawable/scrollview"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tabs"/>
-
+        app:layout_constraintTop_toBottomOf="@id/tabs"
+        app:layout_constraintVertical_bias="0.6"
+        tools:layout_editor_absoluteX="13dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_button"

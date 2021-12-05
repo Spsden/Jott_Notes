@@ -37,8 +37,10 @@ class BottomSheet : BottomSheetDialogFragment() {
 
 
         Notes_add.setOnClickListener {
-            replaceFragment(Notes_page(), true)
-            Toast.makeText(context, "this is toast message", Toast.LENGTH_SHORT).show()
+
+            replaceFragment(NotesPage(),true)
+            Toast.makeText(context,"this is toast message",Toast.LENGTH_SHORT).show()
+
             dismiss()
         }
 
