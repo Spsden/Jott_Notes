@@ -1,12 +1,15 @@
 package com.example.jottnotes
 
 
+import android.content.BroadcastReceiver
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 
 import com.codingwithme.notesapp.database.NotesDatabase
 import com.codingwithme.notesapp.entities.Notes
@@ -15,14 +18,16 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-class Notes_page : BaseFragment() {
+class NotesPage : BaseFragment() {
     var currentDate: String? = null
+    private var noteId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
         }
+        noteId = requireArguments().getInt("noteId",-1)
     }
 
     override fun onCreateView(
@@ -33,10 +38,31 @@ class Notes_page : BaseFragment() {
         return inflater.inflate(R.layout.fragment_notes_page, container, false)
     }
 
+    companion object{
+        @JvmStatic
+        fun newInstance()=
+            NotesPage().apply {
+                arguments= Bundle().apply {
+
+                }
+            }
+    }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (noteId != 1){
+            launch {
+                context?.let {
+                    var notes = NotesDatabase.getDatabase(it).noteDao().getSpecificNote(noteId)
+                    notes_title.setText(notes.title)
+                    notes_desc.setText(notes.noteText)
+                }
+            }
+        }
+
 
         var sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
         currentDate = sdf.format(Date())
@@ -66,6 +92,7 @@ class Notes_page : BaseFragment() {
                 NotesDatabase.getDatabase(it).noteDao().insertNotes(notes)
                 notes_desc.setText("")
                 notes_title.setText("")
+                requireActivity().supportFragmentManager.popBackStack()
 
             }
 
