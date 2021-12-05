@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class NotesPage : BaseFragment() {
+    var selectedColor = "#232323"
     var currentDate: String? = null
     private var noteId = -1
 

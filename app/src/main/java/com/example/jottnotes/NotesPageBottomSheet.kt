@@ -1,31 +1,76 @@
 package com.example.jottnotes
 
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.fragment_notes_page_bottom_sheet.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [NotesPageBottomSheet.newInstance] factory method to
- * create an instance of this fragment.
- */
-class NotesPageBottomSheet : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class NotesPageBottomSheet : BottomSheetDialogFragment() {
+    var selectedColor = "#232323"
+
+    @SuppressLint("RestrictedApi")
+    override fun setupDialog(dialog: Dialog, style: Int) {
+        super.setupDialog(dialog, style)
+
+        val view = LayoutInflater.from(context).inflate(R.layout.fragment_notes_page_bottom_sheet,null)
+        dialog.setContentView(view)
+
+        val param = (view.parent as View).layoutParams as CoordinatorLayout.LayoutParams
+
+        val behavior = param.behavior
+
+        if (behavior is BottomSheetBehavior<*>){
+            behavior.setBottomSheetCallback(object  : BottomSheetBehavior.BottomSheetCallback(){
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    var state = ""
+                    when (newState) {
+                        BottomSheetBehavior.STATE_DRAGGING -> {
+                            state = "DRAGGING"
+                        }
+                        BottomSheetBehavior.STATE_SETTLING -> {
+                            state = "SETTLING"
+                        }
+                        BottomSheetBehavior.STATE_EXPANDED -> {
+                            state = "EXPANDED"
+                        }
+                        BottomSheetBehavior.STATE_COLLAPSED -> {
+                            state = "COLLAPSED"
+                        }
+
+                        BottomSheetBehavior.STATE_HIDDEN -> {
+                            state = "HIDDEN"
+                            dismiss()
+                            behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+                        }
+
+                    }
+                }
+
+            })
+
+
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
         }
     }
 
@@ -33,26 +78,135 @@ class NotesPageBottomSheet : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_notes_page_bottom_sheet, container, false)
     }
 
+
+    private fun setListener(){
+        fNote1.setOnClickListener {
+
+            imgNote1.setImageResource(R.drawable.ic_tick)
+            imgNote2.setImageResource(0)
+            imgNote4.setImageResource(0)
+            imgNote5.setImageResource(0)
+            imgNote6.setImageResource(0)
+            imgNote7.setImageResource(0)
+            selectedColor = "#4e33ff"
+
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action","Blue")
+            intent.putExtra("selectedColor",selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+
+        }
+
+        fNote2.setOnClickListener {
+            imgNote1.setImageResource(0)
+            imgNote2.setImageResource(R.drawable.ic_tick)
+            imgNote4.setImageResource(0)
+            imgNote5.setImageResource(0)
+            imgNote6.setImageResource(0)
+            imgNote7.setImageResource(0)
+            selectedColor = "#ffd633"
+
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action","Yellow")
+            intent.putExtra("selectedColor",selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+
+        }
+
+        fNote4.setOnClickListener {
+            imgNote1.setImageResource(0)
+            imgNote2.setImageResource(0)
+            imgNote4.setImageResource(R.drawable.ic_tick)
+            imgNote5.setImageResource(0)
+            imgNote6.setImageResource(0)
+            imgNote7.setImageResource(0)
+            selectedColor = "#ae3b76"
+
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action","Purple")
+            intent.putExtra("selectedColor",selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+
+        }
+
+        fNote5.setOnClickListener {
+            imgNote1.setImageResource(0)
+            imgNote2.setImageResource(0)
+            imgNote4.setImageResource(0)
+            imgNote5.setImageResource(R.drawable.ic_tick)
+            imgNote6.setImageResource(0)
+            imgNote7.setImageResource(0)
+            selectedColor = "#0aebaf"
+
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action","Green")
+            intent.putExtra("selectedColor",selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+        }
+
+        fNote6.setOnClickListener {
+
+            imgNote1.setImageResource(0)
+            imgNote2.setImageResource(0)
+            imgNote4.setImageResource(0)
+            imgNote5.setImageResource(0)
+            imgNote6.setImageResource(R.drawable.ic_tick)
+            imgNote7.setImageResource(0)
+            selectedColor = "#ff7746"
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action","Orange")
+            intent.putExtra("selectedColor",selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+        }
+
+        fNote7.setOnClickListener {
+            imgNote1.setImageResource(0)
+            imgNote2.setImageResource(0)
+            imgNote4.setImageResource(0)
+            imgNote5.setImageResource(0)
+            imgNote6.setImageResource(0)
+            imgNote7.setImageResource(R.drawable.ic_tick)
+            selectedColor = "#202734"
+
+            val intent = Intent("bottom_sheet_action")
+            intent.putExtra("action","Black")
+            intent.putExtra("selectedColor",selectedColor)
+            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+        }
+
+
+    layoutImage.setOnClickListener{
+        val intent = Intent("bottom_sheet_action")
+        intent.putExtra("action","Image")
+        LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+        dismiss()
+    }
+    layoutWebUrl.setOnClickListener{
+        val intent = Intent("bottom_sheet_action")
+        intent.putExtra("action","WebUrl")
+        LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+        dismiss()
+    }
+    layoutDeleteNote.setOnClickListener {
+        val intent = Intent("bottom_sheet_action")
+        intent.putExtra("action","DeleteNote")
+        LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
+        dismiss()
+    }
+
+
+    }
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NotesPageBottomSheet.
-         */
-        // TODO: Rename and change types and number of parameters
+
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             NotesPageBottomSheet().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
                 }
             }
     }

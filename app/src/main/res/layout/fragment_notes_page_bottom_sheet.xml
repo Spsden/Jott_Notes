@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/img_bar"/>
+            android:src="@drawable/img_bar_dots"/>
     </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -251,9 +251,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/background_blue"
+        android:background="@drawable/bottom_sheet_boxes"
         android:gravity="center"
-        android:visibility="gone"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
@@ -265,8 +264,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_delete"
             android:layout_marginStart="5dp"
-            android:layout_marginEnd="10dp"
-            app:tint="@color/white" />
+            android:layout_marginEnd="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -275,9 +273,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:text="Delete Note"
-            android:fontFamily="@font/montserratbold"
+            android:fontFamily="@font/montserratmedium"
             android:maxLines="1"
             android:ellipsize="end"
             />
