@@ -1,5 +1,5 @@
 
-package com.codingwithme.notesapp.entities
+package com.example.jottnotes.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

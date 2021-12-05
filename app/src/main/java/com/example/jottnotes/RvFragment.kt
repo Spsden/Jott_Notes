@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.coroutines.launch
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.codingwithme.notesapp.database.NotesDatabase
-import com.codingwithme.notesapp.entities.Notes
+import com.example.jottnotes.database.NotesDatabase
+import com.example.jottnotes.entities.Notes
 import kotlinx.android.synthetic.main.fragment_rv.*
-import kotlinx.coroutines.coroutineScope
 
 
 class RvFragment : BaseFragment() {

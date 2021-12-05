@@ -82,6 +82,17 @@ class NotesPageBottomSheet : BottomSheetDialogFragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (noteId != -1){
+            layoutDeleteNote.visibility = View.VISIBLE
+        }else{
+            layoutDeleteNote.visibility = View.GONE
+        }
+        setListener()
+    }
+
+
     private fun setListener(){
         fNote1.setOnClickListener {
 
@@ -200,14 +211,24 @@ class NotesPageBottomSheet : BottomSheetDialogFragment() {
 
     }
     companion object {
-
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            NotesPageBottomSheet().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
+        var noteId = -1
+        fun newInstance(id:Int): NotesPageBottomSheet{
+            val args = Bundle()
+            val fragment = NotesPageBottomSheet()
+            fragment.arguments = args
+            noteId = id
+            return fragment
+        }
     }
+//    companion object {
+//
+//
+//        @JvmStatic
+//        fun newInstance(param1: String, param2: String) =
+//            NotesPageBottomSheet().apply {
+//                arguments = Bundle().apply {
+//
+//                }
+//            }
+//    }
 }

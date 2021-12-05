@@ -1,11 +1,11 @@
 package com.example.jottnotes
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
-import com.codingwithme.notesapp.entities.Notes
+import com.example.jottnotes.entities.Notes
 import kotlinx.android.synthetic.main.rvcard.view.*
 
  class NotesToRvAdapter():
@@ -31,6 +31,12 @@ import kotlinx.android.synthetic.main.rvcard.view.*
      override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
          holder.itemView.title_thumb.text = arrList[position].title
          holder.itemView.note_desc_thumb.text = arrList[position].noteText
+
+         if (arrList[position].color != null){
+             holder.itemView.rv_card.setCardBackgroundColor(Color.parseColor(arrList[position].color))
+         }else{
+             holder.itemView.rv_card.setCardBackgroundColor(Color.parseColor(R.color.scroll_viewGrey.toString()))
+         }
 
          holder.itemView.rv_card.setOnClickListener{
              listener!!.onClicked(arrList[position].id!!)

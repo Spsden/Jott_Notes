@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_bottom_sheet.*
@@ -37,7 +35,7 @@ class BottomSheet : BottomSheetDialogFragment(){
 
 
         Notes_add.setOnClickListener {
-            replaceFragment(NotesPage(),true)
+            replaceFragment(NotesPage.newInstance(),true)
             Toast.makeText(context,"this is toast message",Toast.LENGTH_SHORT).show()
             dismiss()
         }
@@ -45,9 +43,8 @@ class BottomSheet : BottomSheetDialogFragment(){
 
     }
 
-    fun replaceFragment(fragment: Fragment, istransition : Boolean)
+    private fun replaceFragment(fragment: Fragment, istransition : Boolean)
     {
-        val editNotes = fragment
         val manager = requireActivity().supportFragmentManager
         val transaction = manager.beginTransaction()
 
@@ -57,7 +54,7 @@ class BottomSheet : BottomSheetDialogFragment(){
         }
 
 
-        transaction.replace(R.id.frame_layout, editNotes).addToBackStack(null).commit()
+        transaction.replace(R.id.frame_layout, fragment).addToBackStack(null).commit()
 
 
 

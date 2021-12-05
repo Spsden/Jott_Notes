@@ -1,7 +1,7 @@
-package com.codingwithme.notesapp.dao
+package com.example.jottnotes.dao
 
 import androidx.room.*
-import com.codingwithme.notesapp.entities.Notes
+import com.example.jottnotes.entities.Notes
 
 @Dao
 interface NoteDao {
@@ -13,14 +13,14 @@ interface NoteDao {
     suspend fun getSpecificNote(id:Int) : Notes
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNotes(note:Notes)
+    suspend fun insertNotes(note: Notes)
 
     @Delete
-    suspend fun deleteNote(note:Notes)
+    suspend fun deleteNote(note: Notes)
 
     @Query("DELETE FROM notes WHERE id =:id")
     suspend fun deleteSpecificNote(id:Int)
 
     @Update
-    suspend fun updateNote(note:Notes)
+    suspend fun updateNote(note: Notes)
 }

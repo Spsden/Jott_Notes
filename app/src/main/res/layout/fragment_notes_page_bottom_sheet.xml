@@ -22,7 +22,7 @@
         android:layout_height="40dp">
 
         <ImageView
-            android:id="@+id/imgMore"
+            android:id="@+id/imgMore2"
             android:layout_gravity="center"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -240,6 +240,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             />
+
 
     </LinearLayout>
 
