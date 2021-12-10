@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Jott_Notes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ProgressBar" >
+
+        <item name="colorSecondary">@color/menu_and_accents</item>
+        <item name="colorSecondaryVariant">@color/menu_and_accents</item>
+
+    </style>
+
+    <style name="collapsingActionBarExpanded">
+
+
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="font">@font/josefinsansbold</item>
+        <item name="android:textStyle">normal</item>
+
+
+    </style>
+
+    <style name="collapsingActionBarCollapsed">
+
+
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="font">@font/josefinsanssemibold</item>
+        <item name="android:textStyle">normal</item>
+
+
+    </style>
+</resources>
