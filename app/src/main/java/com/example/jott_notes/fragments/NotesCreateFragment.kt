@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.jott_notes.R
 import com.example.jott_notes.databinding.FragmentHomeBinding
 import com.example.jott_notes.databinding.FragmentNotesCreateBinding
@@ -28,6 +30,16 @@ class NotesCreateFragment : Fragment() {
     ): View? {
 
         binding = FragmentNotesCreateBinding.inflate(layoutInflater,container,false)
+
+//        binding.MoreOptions.setOnClickListener {
+//            Navigation.findNavController(it).navigate(R.id.action_notesCreateFragment_to_notesPageBottomSheet2)
+//        }
+
+        binding.MoreOptions.setOnClickListener {
+            findNavController().navigate(R.id.action_notesCreateFragment_to_notesPageBottomSheet2)
+        }
+
+
 
         return binding.root
     }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bottom_sheet"
+    tools:context=".fragments.DeleteBottomSheet">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/delete_graphic"
+        android:scaleType="centerInside"
+        android:padding="10dp">
+
+    </ImageView>
+
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/are_you_sure"
+        android:fontFamily="@font/josefinsansbold"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <TextView
+            android:clickable="true"
+            android:id="@+id/DeleteYes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_sheet_boxes"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="Yes"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/josefinsansmedium"
+            android:maxLines="1"
+            android:layout_weight="50"
+            android:ellipsize="end"
+            android:focusable="true" />
+
+        <TextView
+            android:clickable="true"
+            android:id="@+id/DeleteNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_sheet_boxes"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:text="No"
+            android:layout_marginStart="10dp"
+            android:layout_weight="50"
+            android:fontFamily="@font/josefinsansmedium"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:focusable="true" />
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

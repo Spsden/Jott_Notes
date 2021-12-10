@@ -12,4 +12,16 @@
     <color name="float_cards">#1F1D20</color>
     <color name="menu_and_accents">#3B51E3</color>
     <color name="hint_text">#808080</color>
+
+
+
+
+    <color name="ColorDefaultNote">#606570</color>
+    <color name="ColorBlueNote">#4e33ff</color>
+    <color name="ColorYellowNote">#ffd633</color>
+    <color name="ColorWhiteNote">#ffffff</color>
+    <color name="ColorPurpleNote">#ae3b76</color>
+    <color name="ColorGreenNote">#0aebaf</color>
+    <color name="ColorOrangeNote">#ff7746</color>
+    <color name="ColorBlackNote">#202734</color>
 </resources>

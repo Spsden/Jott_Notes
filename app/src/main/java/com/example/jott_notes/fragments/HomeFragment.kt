@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
 //        val collapsingActionbar = binding.collapsingToolbarLayout
 //        collapsingActionbar.setExpandedTitleTextAppearance(R.style.collapsingActionBarExpanded)
 //        collapsingActionbar.setCollapsedTitleTextAppearance(R.style.collapsingActionBarCollapsed)
-
+//
 
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
