@@ -11,4 +11,5 @@
     <color name="bg_sheet">#070600</color>
     <color name="float_cards">#1F1D20</color>
     <color name="menu_and_accents">#3B51E3</color>
+    <color name="hint_text">#808080</color>
 </resources>
