@@ -1,20 +1,17 @@
 package com.example.jott_notes.adapters
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.Navigator
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.jott_notes.R
 import com.example.jott_notes.databinding.RvcardBinding
 import com.example.jott_notes.fragments.HomeFragmentDirections
 import com.example.jott_notes.mvvmstuff.entity.Notes
 
 
-class NotesRvAdapter(val requireContext: Context, val notesList: List<Notes>) :
+class NotesRvAdapter(val requireContext: Context, private val notesList: List<Notes>) :
     RecyclerView.Adapter<NotesRvAdapter.NotesViewHolder>() {
 
 
@@ -40,11 +37,16 @@ class NotesRvAdapter(val requireContext: Context, val notesList: List<Notes>) :
 //        }
 
         holder.binding.root.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(dataTransfer = Notes(title = notesList[position].title, notesdesc = notesList[position].notesdesc, date = notesList[position].date))
+            val action = HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(
+                dataTransfer = Notes(
+                    title = notesList[position].title,
+                    notesdesc = notesList[position].notesdesc,
+                    date = notesList[position].date
+                )
+            )
             Navigation.findNavController(it).navigate(action)
 
         }
-
 
 
     }
@@ -53,13 +55,6 @@ class NotesRvAdapter(val requireContext: Context, val notesList: List<Notes>) :
 
 
 }
-
-
-
-
-
-
-
 
 
 //when (notesList[position].prioritycolor) {
