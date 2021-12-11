@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.jott_notes.R
+import com.example.jott_notes.databinding.FragmentNotesPageBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -17,6 +18,8 @@ class NotesPageBottomSheet : BottomSheetDialogFragment() {
     override fun getTheme():  Int = R.style.BottomSheetDialogTheme
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog = BottomSheetDialog(requireContext(),theme)
+
+    lateinit var binding: FragmentNotesPageBottomSheetBinding
 
 
 
@@ -34,8 +37,68 @@ class NotesPageBottomSheet : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes_page_bottom_sheet, container, false)
+
+        binding = FragmentNotesPageBottomSheetBinding.inflate(layoutInflater,container,false)
+        setListeners()
+       // return inflater.inflate(R.layout.fragment_notes_page_bottom_sheet, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+
+    }
+
+    private fun setListeners(){
+
+        binding.fNote1.setOnClickListener{
+            binding.fNote1.setImageResource(R.drawable.ic_check_24)
+
+
+        }
+
+        binding.fNote2.setOnClickListener{
+            binding.fNote2.setImageResource(R.drawable.ic_check_24)
+
+        }
+
+        binding.fNote3.setOnClickListener{
+            binding.fNote3.setImageResource(R.drawable.ic_check_24)
+
+        }
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //    companion object {
 //
@@ -47,4 +110,3 @@ class NotesPageBottomSheet : BottomSheetDialogFragment() {
 //                }
 //            }
 //    }
-}

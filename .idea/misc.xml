@@ -19,7 +19,7 @@
         <entry key="app/src/main/res/layout/fragment_delete_bottom_sheet.xml" value="0.15374873353596757" />
         <entry key="app/src/main/res/layout/fragment_edit_notes.xml" value="0.16134751773049646" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_notes_create.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_notes_create.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_notes_page_bottom_sheet.xml" value="0.25" />
         <entry key="app/src/main/res/layout/rvcard.xml" value="0.1" />
       </map>

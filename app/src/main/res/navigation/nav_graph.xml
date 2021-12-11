@@ -27,8 +27,7 @@
         <action
             android:id="@+id/action_notesCreateFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:enterAnim="@anim/fragment_fade_exit"
-            app:exitAnim="@anim/fragment_fade_enter" />
+             />
         <action
             android:id="@+id/action_notesCreateFragment_to_notesPageBottomSheet2"
             app:destination="@id/notesPageBottomSheet2" />
