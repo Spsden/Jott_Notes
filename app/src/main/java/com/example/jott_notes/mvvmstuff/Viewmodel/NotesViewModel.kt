@@ -9,7 +9,7 @@ import com.example.jott_notes.mvvmstuff.entity.Notes
 
 class NotesViewModel(application: Application) : AndroidViewModel(application) {
 
-    val repository:NotesRepository
+    private val repository:NotesRepository
 
     init {
         val dao = NotesDatabase.getDatabaseInstance(application).myNotesDao()

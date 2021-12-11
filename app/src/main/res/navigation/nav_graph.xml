@@ -28,9 +28,6 @@
             android:id="@+id/action_notesCreateFragment_to_homeFragment"
             app:destination="@id/homeFragment"
              />
-        <action
-            android:id="@+id/action_notesCreateFragment_to_notesPageBottomSheet2"
-            app:destination="@id/notesPageBottomSheet2" />
     </fragment>
     <fragment
         android:id="@+id/editNotesFragment"
@@ -45,9 +42,5 @@
         android:id="@+id/notesPageBottomSheet2"
         android:name="com.example.jott_notes.fragments.NotesPageBottomSheet"
         android:label="fragment_notes_page_bottom_sheet"
-        tools:layout="@layout/fragment_notes_page_bottom_sheet" >
-        <action
-            android:id="@+id/action_notesPageBottomSheet2_to_notesCreateFragment"
-            app:destination="@id/notesCreateFragment" />
-    </dialog>
+        tools:layout="@layout/fragment_notes_page_bottom_sheet" />
 </navigation>

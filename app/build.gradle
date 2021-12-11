@@ -9,6 +9,10 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 android {
     compileSdk 32
 
+    dataBinding {
+        enabled true
+    }
+
     defaultConfig {
         applicationId "com.example.jott_notes"
         minSdk 21
@@ -29,6 +33,9 @@ android {
 
     buildFeatures{
         viewBinding true
+    }
+    dataBinding {
+        android.buildFeatures.dataBinding = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

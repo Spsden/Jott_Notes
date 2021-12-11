@@ -21,6 +21,7 @@
             android:orientation="horizontal"
             android:padding="10dp"
             android:weightSum="100"
+
             app:layout_constraintBottom_toTopOf="@id/notes_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -52,6 +53,7 @@
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:background="@color/float_cards"
                 android:layout_marginHorizontal="7dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/DeleteButton"

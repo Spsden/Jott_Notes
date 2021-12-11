@@ -24,4 +24,8 @@
     <color name="ColorGreenNote">#0aebaf</color>
     <color name="ColorOrangeNote">#ff7746</color>
     <color name="ColorBlackNote">#202734</color>
+
+    <color name="holo_purple">#AA66CC</color>
+    <color name="orange">#FF7746</color>
+    <color name="colorgreen">#0AEBAF</color>
 </resources>

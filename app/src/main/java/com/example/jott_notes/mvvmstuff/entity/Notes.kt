@@ -13,9 +13,9 @@ class Notes (
     var title: String,
     var notesdesc: String,
     var date:String,
-    var prioritycolor:String,
-    var image_path:String,
-    var web_link:String
+    var prioritycolor:String
+//    var image_path:String,
+//    var web_link:String
 
 
 
