@@ -8,7 +8,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/menu_and_accents"
+    android:background="@drawable/bottom_sheet"
     android:orientation="vertical"
     app:behavior_peekHeight="40dp"
     app:layout_behavior="@string/bottom_sheet_behavior"
@@ -18,15 +18,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="7dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/josefinsanssemibold"
         android:gravity="center_horizontal"
         android:padding="10dp"
         android:text="Options"
         android:textColor="@color/white"
-        android:textSize="24sp">
+        android:textSize="24sp" />
 
-    </TextView>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginVertical="20dp"
+        android:background="@drawable/bottom_sheet_options_graphic" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,9 +101,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginVertical="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
         android:layout_weight="100"
+
         android:orientation="horizontal">
+
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -160,10 +168,3 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </LinearLayout>
-
-
-
-
-
-
-

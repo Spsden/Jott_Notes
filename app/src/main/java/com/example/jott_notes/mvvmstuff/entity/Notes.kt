@@ -1,9 +1,11 @@
 package com.example.jott_notes.mvvmstuff.entity
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
-
+@kotlinx.parcelize.Parcelize
 @Entity(tableName = "Notes")
 class Notes (
 
@@ -13,7 +15,7 @@ class Notes (
     var title: String,
     var notesdesc: String,
     var date:String,
-    var prioritycolor:String
+    //var prioritycolor:String
 //    var image_path:String,
 //    var web_link:String
 
@@ -21,8 +23,7 @@ class Notes (
 
 
 
-)
-
+) : Parcelable
 
 
 //import androidx.room.ColumnInfo

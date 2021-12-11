@@ -23,7 +23,12 @@ class NotesPageBottomSheet : BottomSheetDialogFragment() {
         BottomSheetDialog(requireContext(), theme)
 
     lateinit var binding: FragmentNotesPageBottomSheetBinding
-    var priorityColor: String = "0"
+
+
+    public fun getPriorityColor(priorityColor:String ): String {
+        return priorityColor
+    }
+
 
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +46,7 @@ class NotesPageBottomSheet : BottomSheetDialogFragment() {
 
         binding = FragmentNotesPageBottomSheetBinding.inflate(layoutInflater, container, false)
         binding.fNote0.setImageResource(R.drawable.ic_check_24)
-        setListeners()
+//        setListeners()
         // return inflater.inflate(R.layout.fragment_notes_page_bottom_sheet, container, false)
         return binding.root
     }
@@ -54,63 +59,52 @@ class NotesPageBottomSheet : BottomSheetDialogFragment() {
 
     private fun setListeners() {
 
-        binding.fNote0.setOnClickListener{
-            priorityColor = "0"
-            binding.fNote0.setImageResource(R.drawable.ic_check_24)
-            binding.fNote1.setImageResource(0)
-            binding.fNote2.setImageResource(0)
-            binding.fNote3.setImageResource(0)
-
-            val intent = Intent("bottom_sheet_color_action")
-            intent.putExtra("action","dark")
-            intent.putExtra("priorityColor",priorityColor)
-            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-        }
-
-        binding.fNote1.setOnClickListener {
-            priorityColor = "1"
-            binding.fNote1.setImageResource(R.drawable.ic_check_24)
-            binding.fNote2.setImageResource(0)
-            binding.fNote3.setImageResource(0)
-            binding.fNote0.setImageResource(0)
-
-            val intent = Intent("bottom_sheet_color_action")
-            intent.putExtra("action","purple")
-            intent.putExtra("priorityColor",priorityColor)
-            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-
-
-        }
-
-        binding.fNote2.setOnClickListener {
-            priorityColor = "2"
-
-            binding.fNote2.setImageResource(R.drawable.ic_check_24)
-            binding.fNote1.setImageResource(0)
-            binding.fNote3.setImageResource(0)
-            binding.fNote0.setImageResource(0)
-
-            val intent = Intent("bottom_sheet_color_action")
-            intent.putExtra("action","orange")
-            intent.putExtra("priorityColor",priorityColor)
-            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-
-        }
-
-        binding.fNote3.setOnClickListener {
-            priorityColor = "3"
-
-            binding.fNote3.setImageResource(R.drawable.ic_check_24)
-            binding.fNote2.setImageResource(0)
-            binding.fNote1.setImageResource(0)
-            binding.fNote0.setImageResource(0)
-
-            val intent = Intent("bottom_sheet_color_action")
-            intent.putExtra("action","green")
-            intent.putExtra("priorityColor",priorityColor)
-            LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-
-        }
+//        binding.fNote0.setOnClickListener{
+//            priorityColor = "0"
+//            getPriorityColor("0")
+//            binding.fNote0.setImageResource(R.drawable.ic_check_24)
+//            binding.fNote1.setImageResource(0)
+//            binding.fNote2.setImageResource(0)
+//            binding.fNote3.setImageResource(0)
+//
+//
+//        }
+//
+//        binding.fNote1.setOnClickListener {
+//            priorityColor = "1"
+//            getPriorityColor("1")
+//            binding.fNote1.setImageResource(R.drawable.ic_check_24)
+//            binding.fNote2.setImageResource(0)
+//            binding.fNote3.setImageResource(0)
+//            binding.fNote0.setImageResource(0)
+//
+//
+//
+//        }
+//
+//        binding.fNote2.setOnClickListener {
+//            priorityColor = "2"
+//            getPriorityColor("2")
+//            binding.fNote2.setImageResource(R.drawable.ic_check_24)
+//            binding.fNote1.setImageResource(0)
+//            binding.fNote3.setImageResource(0)
+//            binding.fNote0.setImageResource(0)
+//
+//
+//
+//        }
+//
+//        binding.fNote3.setOnClickListener {
+//            priorityColor = "3"
+//            getPriorityColor("3")
+//            binding.fNote3.setImageResource(R.drawable.ic_check_24)
+//            binding.fNote2.setImageResource(0)
+//            binding.fNote1.setImageResource(0)
+//            binding.fNote0.setImageResource(0)
+//
+//
+//
+//        }
 
     }
 

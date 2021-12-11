@@ -7,12 +7,15 @@ import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.jott_notes.R
 import com.example.jott_notes.databinding.FragmentNotesCreateBinding
@@ -27,9 +30,9 @@ class NotesCreateFragment : Fragment() {
 
     lateinit var binding: FragmentNotesCreateBinding
 
-    var priorityColor : String = "#232323"
+    var priorityColor: String = "0"
 
-    var noteHeadColor = view?.findViewById<TextView>(R.id.note_heading)
+
     val viewModel: NotesViewModel by viewModels()
 
 
@@ -51,13 +54,6 @@ class NotesCreateFragment : Fragment() {
         setHasOptionsMenu(true)
 
 
-//        binding.MoreOptions.setOnClickListener {
-//            findNavController().navigate(R.id.action_notesCreateFragment_to_notesPageBottomSheet2)
-//        }
-
-//        binding.SaveNoteButtonFAB.setOnClickListener {
-//            createNotes(it)
-//        }
         return binding.root
 
 
@@ -66,10 +62,6 @@ class NotesCreateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-//        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
-//            BroadcastReceiver, IntentFilter("bottom_sheet_color_action")
-//        )
 
         binding.SaveNoteButtonFAB.setOnClickListener {
             createNotes(it)
@@ -91,71 +83,82 @@ class NotesCreateFragment : Fragment() {
                 title = notesTitle,
                 notesdesc = notesDesc,
                 date = currentDate.toString(),
-                prioritycolor = priorityColor
+                //prioritycolor
             )
 
         viewModel.addNotes(data)
 
-        Toast.makeText(activity?.applicationContext,"Note Created",Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            activity?.applicationContext,
+            "Note Created Successfully",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        Navigation.findNavController(it!!).navigate(R.id.action_notesCreateFragment_to_homeFragment)
 
 
     }
 
-//    private val BroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-//        override fun onReceive(p0: Context?, p1: Intent?) {
-//            var actionColor = p1!!.getStringExtra("action")
-//
-//            when (actionColor!!) {
-//
-//
-//                "dark" -> {
-//                    priorityColor = p1.getStringExtra("priorityColor")!!
-//                    noteHeadColor?.setBackgroundColor(Color.parseColor(priorityColor))
-//                }
-//
-//                "purple" -> {
-//                    priorityColor = p1.getStringExtra("priorityColor")!!
-//                    noteHeadColor?.setBackgroundColor(Color.parseColor(priorityColor))
-//                }
-//
-//                "orange" -> {
-//                    priorityColor = p1.getStringExtra("priorityColor")!!
-//                    noteHeadColor?.setBackgroundColor(Color.parseColor(priorityColor))
-//                }
-//
-//                "green" -> {
-//                    priorityColor = p1.getStringExtra("priorityColor")!!
-//                    noteHeadColor?.setBackgroundColor(Color.parseColor(priorityColor))
-//                }
-//
-//
-//                else -> {
-//                    priorityColor = p1.getStringExtra("priorityColor")!!
-//                    noteHeadColor?.setBackgroundColor(Color.parseColor(priorityColor))
-//                }
-//
-//            }
-//        }
-//    }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.more,menu)
+        inflater.inflate(R.menu.more, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.More_Options)
-        {
-            val bottomSheetMoreOptions=BottomSheetDialog(requireContext())
+        if (item.itemId == R.id.More_Options) {
+            val bottomSheetMoreOptions = BottomSheetDialog(requireContext())
             bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
             bottomSheetMoreOptions.show()
 
+            val dark = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote0)
+            val purple = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote1)
+            val orange = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote2)
+            val green = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote3)
+
+            dark?.setOnClickListener {
+                priorityColor = "0"
+
+                dark.setImageResource(R.drawable.ic_check_24)
+                purple?.setImageResource(0)
+                orange?.setImageResource(0)
+                green?.setImageResource(0)
+
+            }
+
+            purple?.setOnClickListener {
+                priorityColor = "1"
+
+                purple.setImageResource(R.drawable.ic_check_24)
+                dark?.setImageResource(0)
+                orange?.setImageResource(0)
+                green?.setImageResource(0)
+
+            }
+
+            orange?.setOnClickListener {
+                priorityColor = "2"
+
+                orange.setImageResource(R.drawable.ic_check_24)
+                dark?.setImageResource(0)
+                purple?.setImageResource(0)
+                green?.setImageResource(0)
+
+            }
+
+            green?.setOnClickListener {
+                priorityColor = "3"
+
+                green.setImageResource(R.drawable.ic_check_24)
+                dark?.setImageResource(0)
+                orange?.setImageResource(0)
+                purple?.setImageResource(0)
+
+            }
 
 
         }
-        if (item.itemId == R.id.Delete)
-        {
+        if (item.itemId == R.id.Delete) {
             val bottomSheetDelete = BottomSheetDialog(requireContext())
             bottomSheetDelete.setContentView(R.layout.fragment_delete_bottom_sheet)
             bottomSheetDelete.show()
@@ -176,12 +179,6 @@ class NotesCreateFragment : Fragment() {
 
         return super.onOptionsItemSelected(item)
     }
-
-//    override fun onDestroy() {
-////        LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(BroadcastReceiver)
-//        super.onDestroy()
-//    }
-
 
 
     companion object {

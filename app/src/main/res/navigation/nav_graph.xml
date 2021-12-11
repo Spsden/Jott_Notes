@@ -11,18 +11,18 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_editNotesFragment"
-            app:destination="@id/editNotesFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_notesCreateFragment"
             app:destination="@id/notesCreateFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_editNotesFragment"
+            app:destination="@id/editNotesFragment" />
     </fragment>
     <fragment
         android:id="@+id/notesCreateFragment"
         android:name="com.example.jott_notes.fragments.NotesCreateFragment"
-        android:label="fragment_notes_create"
+        android:label="Notes"
         tools:layout="@layout/fragment_notes_create" >
         <action
             android:id="@+id/action_notesCreateFragment_to_homeFragment"
@@ -32,11 +32,16 @@
     <fragment
         android:id="@+id/editNotesFragment"
         android:name="com.example.jott_notes.fragments.EditNotesFragment"
-        android:label="fragment_edit_notes"
+        android:label="Edit Notes"
         tools:layout="@layout/fragment_edit_notes" >
         <action
             android:id="@+id/action_editNotesFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <argument
+            android:name="dataTransfer"
+            app:argType="com.example.jott_notes.mvvmstuff.entity.Notes"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <dialog
         android:id="@+id/notesPageBottomSheet2"

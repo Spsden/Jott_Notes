@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.jott_notes.R
 import com.example.jott_notes.adapters.NotesRvAdapter
 import com.example.jott_notes.databinding.FragmentHomeBinding
@@ -59,7 +60,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getNotes().observe(viewLifecycleOwner,{notesList ->
-            binding.RvNotes.layoutManager = GridLayoutManager(requireContext(),2)
+            binding.RvNotes.layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
             binding.RvNotes.adapter = NotesRvAdapter(requireContext(),notesList)
 
         })

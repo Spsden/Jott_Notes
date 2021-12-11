@@ -5,10 +5,12 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.jott_notes.R
 import com.example.jott_notes.databinding.RvcardBinding
+import com.example.jott_notes.fragments.HomeFragmentDirections
 import com.example.jott_notes.mvvmstuff.entity.Notes
 
 
@@ -28,13 +30,19 @@ class NotesRvAdapter(val requireContext: Context, val notesList: List<Notes>) :
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         holder.binding.titleThumb.text = notesList[position].title
-        holder.binding.noteDescThumb.text = notesList[position].title
+        holder.binding.noteDescThumb.text = notesList[position].notesdesc
 
-        if (notesList[position].prioritycolor != null){
-            holder.binding.rvCard.setCardBackgroundColor(Color.parseColor(notesList[position].prioritycolor))
-        }
-        else{
-            holder.binding.rvCard.setCardBackgroundColor(Color.parseColor(R.color.float_cards.toString()))
+//        if (notesList[position].prioritycolor != null){
+//            holder.binding.rvCard.setCardBackgroundColor(Color.parseColor(notesList[position].prioritycolor))
+//        }
+//        else{
+//            holder.binding.rvCard.setCardBackgroundColor(Color.parseColor(R.color.float_cards.toString()))
+//        }
+
+        holder.binding.root.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(dataTransfer = Notes(title = notesList[position].title, notesdesc = notesList[position].notesdesc, date = notesList[position].date))
+            Navigation.findNavController(it).navigate(action)
+
         }
 
 
