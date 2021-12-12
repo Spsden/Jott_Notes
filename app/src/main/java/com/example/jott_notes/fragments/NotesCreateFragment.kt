@@ -43,6 +43,7 @@ class NotesCreateFragment : Fragment() {
     ): View {
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "Add Note"
 
 
         binding = FragmentNotesCreateBinding.inflate(
