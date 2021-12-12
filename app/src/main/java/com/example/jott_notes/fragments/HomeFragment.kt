@@ -17,6 +17,7 @@ import com.example.jott_notes.R
 import com.example.jott_notes.adapters.NotesRvAdapter
 import com.example.jott_notes.databinding.FragmentHomeBinding
 import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
 
@@ -69,7 +70,7 @@ class HomeFragment : Fragment() {
 
         })
 
-        val searchButton = binding.searchViewQuery as SearchView
+        val searchButton = binding.cardS.searchViewQuery as SearchView
         searchButton.queryHint = "Search Notes ..."
         searchButton.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
