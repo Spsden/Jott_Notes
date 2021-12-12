@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import androidx.navigation.Navigator
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jott_notes.databinding.RvcardBinding
 import com.example.jott_notes.fragments.HomeFragmentDirections
@@ -39,6 +38,7 @@ class NotesRvAdapter(val requireContext: Context, private val notesList: List<No
         holder.binding.root.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(
                 dataTransfer = Notes(
+                    id = notesList[position].id,
                     title = notesList[position].title,
                     notesdesc = notesList[position].notesdesc,
                     date = notesList[position].date

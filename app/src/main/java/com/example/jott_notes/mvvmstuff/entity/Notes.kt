@@ -5,12 +5,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
-@kotlinx.parcelize.Parcelize
+@Parcelize
 @Entity(tableName = "Notes")
-class Notes (
+class Notes(
 
     @PrimaryKey(autoGenerate = true)
-    var id:Int? = null,
+    var id: Int? = null,
 
     var title: String,
     var notesdesc: String,

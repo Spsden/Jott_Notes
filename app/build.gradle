@@ -2,12 +2,17 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-parcelize'
+    //id 'kotlin-parcelize'
 }
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'org.jetbrains.kotlin.android.extensions'
 
 android {
     compileSdk 32
+
+    androidExtensions {
+        experimental = true
+    }
 
     dataBinding {
         enabled true
