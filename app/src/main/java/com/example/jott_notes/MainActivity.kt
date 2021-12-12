@@ -13,8 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val actionBar = supportActionBar
-//        actionBar!!.title = "Jott Notes"
+
+
+
+//        setSupportActionBar(findViewById(R.id.toolbar))
 
         navController = findNavController(R.id.fragmentContainerView)
 //        setupActionBarWithNavController(navController)

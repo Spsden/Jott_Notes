@@ -2,12 +2,11 @@ package com.example.jott_notes.fragments
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -17,19 +16,30 @@ import com.example.jott_notes.adapters.NotesRvAdapter
 import com.example.jott_notes.databinding.FragmentHomeBinding
 import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
     val viewModel: NotesViewModel by viewModels()
-    var allavailableNotes = arrayListOf<Notes>()
+    var notes = ArrayList<Notes>()
     lateinit var adapter: NotesRvAdapter
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+
+            val toolbar: Toolbar = binding.toolbar
+            //val newActionbar = binding.toolbar
+            (activity as AppCompatActivity?)!!.setSupportActionBar(toolbar)
+
+            val collapsingToolbar :CollapsingToolbarLayout = binding.collapsingToolbarLayout
+            collapsingToolbar.title = "Jott Notes"
 
         }
     }
@@ -40,13 +50,15 @@ class HomeFragment : Fragment() {
     ): View? {
 
 
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-        (activity as AppCompatActivity?)!!.supportActionBar?.title = null
+
+
+        (activity as AppCompatActivity?)!!.supportActionBar?.title = "Jott Notes"
         (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
             ColorDrawable(
                 ContextCompat.getColor(requireContext(), R.color.menu_and_accents)
             )
         )
+        setHasOptionsMenu(true)
 
 
 
@@ -68,7 +80,7 @@ class HomeFragment : Fragment() {
         //recyclerviewcreator || layoutManager
 
         viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
-            allavailableNotes as List<Notes>
+            notes = notesList as ArrayList<Notes>
             binding.RvNotes.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             adapter = NotesRvAdapter(requireContext(),notesList)
@@ -79,25 +91,31 @@ class HomeFragment : Fragment() {
 
         //SearchQueries
 
-        val searchButton = binding.cardS.searchViewQuery as SearchView
-        searchButton.queryHint = "Search Notes ..."
-        searchButton.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                //notesFinding(query)
+        binding.cardView.searchViewQuery.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
 
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-
-                notesFinding(newText)
                 return true
             }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+
+                var tempArr = ArrayList<Notes>()
+
+                for (i in notes){
+                    if (i.title.toLowerCase(Locale.getDefault()).contains(p0.toString()) || i.notesdesc.toLowerCase(Locale.getDefault()).contains(p0.toString()))
+                    {
+                        tempArr.add(i)
+                    }
+                }
+
+                adapter.findingNotes(tempArr)
+                adapter.notifyDataSetChanged()
+                return true
+            }
+
         })
 
 
-
-    }
 
 //    companion object {
 //
@@ -109,20 +127,23 @@ class HomeFragment : Fragment() {
 //            }
 //    }
 
-     fun notesFinding(newText: String?) {
 
-         val newSearchedList = arrayListOf<Notes>()
-         for (n in allavailableNotes){
-             if (n.title.contains(newText!!) || n.notesdesc.contains(newText))
-             {
-                 newSearchedList.add(n)
-             }
-         }
-         adapter.findingNotes(newSearchedList)
 
-       //Log.e("@@@@","notesFinding : $newText")
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.moremain,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+
 }
+
+
+
+
+
+//Log.e("@@@@","notesFinding : $newText")
 
 

@@ -15,7 +15,7 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
 
     fun findingNotes(newSearchedList: ArrayList<Notes>) {
         notesList = newSearchedList
-        notifyDataSetChanged()
+
 
     }
 

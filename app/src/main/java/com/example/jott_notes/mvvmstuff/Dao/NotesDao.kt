@@ -19,6 +19,9 @@ interface NotesDao {
 
     @Update
     fun updateNotes(notes: Notes)
+//
+//    @Query("SELECT * FROM Notes WHERE title LIKE :searchQuery OR notesdesc LIKE :searchQuery")
+//    fun searchDatabase(searchQuery: String) : LiveData<List<Notes>>
 
 }
 

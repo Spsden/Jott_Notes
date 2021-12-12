@@ -77,6 +77,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.4.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
     implementation 'androidx.activity:activity-ktx:1.4.0'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
 
     // Kotlin components
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.30"
@@ -88,6 +89,11 @@ dependencies {
     //forvectordrawable
     //noinspection GradleCompatible
     implementation("com.android.support:appcompat-v7:23.2.0")
+
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+    implementation 'com.google.android.material:material:1.6.0-alpha01'
+    //noinspection GradleCompatible,GradleCompatible
+    implementation 'com.android.support:design:26.1.0'
 
 
 
