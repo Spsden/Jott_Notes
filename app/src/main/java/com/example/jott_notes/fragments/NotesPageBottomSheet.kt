@@ -17,7 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class NotesPageBottomSheet : BottomSheetDialogFragment() {
-    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
+//    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         BottomSheetDialog(requireContext(), theme)

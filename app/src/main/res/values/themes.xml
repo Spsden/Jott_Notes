@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Jott_Notes" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/menu_and_accents</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -63,4 +63,12 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
+
+<!--    <style name="BottomSheetStyle" parent="Theme.Design.BottomSheetDialog">-->
+<!--        <item name="bottomSheetStyle">@style/Widget.Design.BottomSheet.Modal</item>-->
+<!--    </style>-->
+
+<!--    <style name="Modal" parent="Widget.Design.BottomSheet.Modal">-->
+<!--        <item name="android:background">@drawable/bottom_sheet</item>-->
+<!--    </style>-->
 </resources>

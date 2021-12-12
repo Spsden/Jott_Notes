@@ -1,5 +1,7 @@
 package com.example.jott_notes.fragments
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
@@ -42,7 +44,10 @@ class NotesCreateFragment : Fragment() {
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
 
-        binding = FragmentNotesCreateBinding.inflate(layoutInflater, container, false)
+
+        binding = FragmentNotesCreateBinding.inflate(
+            layoutInflater, container, false
+        )
         setHasOptionsMenu(true)
 
 
@@ -56,37 +61,49 @@ class NotesCreateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.SaveNoteButtonFAB.setOnClickListener {
-            createNotes(it)
+
+                createNotes(it)
+
         }
 
 
     }
 
     private fun createNotes(it: View?) {
-        var notesTitle = binding.notesTitle.text.toString()
-        var notesDesc = binding.notesDesc.text.toString()
 
-        var sdf = SimpleDateFormat("dd/M/yyy hh:mm:ss")
-        val currentDate = sdf.format(Date())
+        if (binding.notesTitle.text.isNullOrEmpty()) {
+            Toast.makeText(context, "Atleast Title Required", Toast.LENGTH_SHORT).show()
+        }
+        else{
 
-        val data =
-            Notes(
-                null,
-                title = notesTitle,
-                notesdesc = notesDesc,
-                date = currentDate.toString(),
-                //prioritycolor
-            )
+            val notesTitle = binding.notesTitle.text.toString()
+            val notesDesc = binding.notesDesc.text.toString()
 
-        viewModel.addNotes(data)
+            val sdf = SimpleDateFormat("dd/M/yyy hh:mm:ss")
+            val currentDate = sdf.format(Date())
 
-        Toast.makeText(
-            activity?.applicationContext,
-            "Note Created Successfully",
-            Toast.LENGTH_SHORT
-        ).show()
+            val data =
+                Notes(
+                    null,
+                    title = notesTitle,
+                    notesdesc = notesDesc,
+                    date = currentDate,
+                    //prioritycolor
+                )
 
-        Navigation.findNavController(it!!).navigate(R.id.action_notesCreateFragment_to_homeFragment)
+            viewModel.addNotes(data)
+
+            Toast.makeText(
+                activity?.applicationContext,
+                "Note Created Successfully",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            Navigation.findNavController(it!!).navigate(R.id.action_notesCreateFragment_to_homeFragment)
+
+        }
+
+
 
 
     }
@@ -99,7 +116,8 @@ class NotesCreateFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.More_Options) {
-            val bottomSheetMoreOptions = BottomSheetDialog(requireContext())
+            val bottomSheetMoreOptions =
+                BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
             bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
             bottomSheetMoreOptions.show()
 
@@ -151,7 +169,8 @@ class NotesCreateFragment : Fragment() {
 
         }
         if (item.itemId == R.id.Delete) {
-            val bottomSheetDelete = BottomSheetDialog(requireContext())
+            val bottomSheetDelete =
+                BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
             bottomSheetDelete.setContentView(R.layout.fragment_delete_bottom_sheet)
             bottomSheetDelete.show()
 
