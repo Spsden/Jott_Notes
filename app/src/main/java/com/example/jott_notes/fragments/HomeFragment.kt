@@ -2,7 +2,6 @@ package com.example.jott_notes.fragments
 
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,12 +16,15 @@ import com.example.jott_notes.R
 import com.example.jott_notes.adapters.NotesRvAdapter
 import com.example.jott_notes.databinding.FragmentHomeBinding
 import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
+import com.example.jott_notes.mvvmstuff.entity.Notes
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
     val viewModel: NotesViewModel by viewModels()
+    var allavailableNotes = arrayListOf<Notes>()
+    lateinit var adapter: NotesRvAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,20 +65,27 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //recyclerviewcreator || layoutManager
+
         viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
+            allavailableNotes as List<Notes>
             binding.RvNotes.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            binding.RvNotes.adapter = NotesRvAdapter(requireContext(), notesList)
+            adapter = NotesRvAdapter(requireContext(),notesList)
+            binding.RvNotes.adapter = adapter
 
         })
+
+
+        //SearchQueries
 
         val searchButton = binding.cardS.searchViewQuery as SearchView
         searchButton.queryHint = "Search Notes ..."
         searchButton.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                notesFinding(query)
+                //notesFinding(query)
 
-                return true
+                return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -102,7 +111,16 @@ class HomeFragment : Fragment() {
 
      fun notesFinding(newText: String?) {
 
-       Log.e("@@@@","notesFinding : $newText")
+         val newSearchedList = arrayListOf<Notes>()
+         for (n in allavailableNotes){
+             if (n.title.contains(newText!!) || n.notesdesc.contains(newText))
+             {
+                 newSearchedList.add(n)
+             }
+         }
+         adapter.findingNotes(newSearchedList)
+
+       //Log.e("@@@@","notesFinding : $newText")
 
     }
 }

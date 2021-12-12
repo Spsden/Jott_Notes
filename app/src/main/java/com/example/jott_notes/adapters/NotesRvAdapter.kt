@@ -10,8 +10,14 @@ import com.example.jott_notes.fragments.HomeFragmentDirections
 import com.example.jott_notes.mvvmstuff.entity.Notes
 
 
-class NotesRvAdapter(val requireContext: Context, private val notesList: List<Notes>) :
+class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
     RecyclerView.Adapter<NotesRvAdapter.NotesViewHolder>() {
+
+    fun findingNotes(newSearchedList: ArrayList<Notes>) {
+        notesList = newSearchedList
+        notifyDataSetChanged()
+
+    }
 
 
     class NotesViewHolder(val binding: RvcardBinding) : RecyclerView.ViewHolder(binding.root)
@@ -52,6 +58,8 @@ class NotesRvAdapter(val requireContext: Context, private val notesList: List<No
     }
 
     override fun getItemCount() = notesList.size
+
+
 
 
 }
