@@ -45,7 +45,7 @@ class NotesPageBottomSheet : BottomSheetDialogFragment() {
 
 
         binding = FragmentNotesPageBottomSheetBinding.inflate(layoutInflater, container, false)
-        binding.fNote0.setImageResource(R.drawable.ic_check_24)
+//        binding.fNote0.setImageResource(R.drawable.ic_check_24)
 //        setListeners()
         // return inflater.inflate(R.layout.fragment_notes_page_bottom_sheet, container, false)
         return binding.root

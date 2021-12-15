@@ -3,6 +3,7 @@ package com.example.jott_notes.fragments
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
@@ -67,6 +68,19 @@ class NotesCreateFragment : Fragment() {
 
         }
 
+        try {
+            binding.notesDesc.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    binding.bottomBar.visibility = View.VISIBLE
+                    binding.notesDesc.setStylesBar(binding.styleBar)
+                } else {
+                    binding.bottomBar.visibility = View.GONE
+                }
+            }
+        } catch (e: Throwable) {
+            Log.d("TAG", "FROM CREATE NOTES")
+        }
+
 
     }
 
@@ -78,7 +92,7 @@ class NotesCreateFragment : Fragment() {
         else{
 
             val notesTitle = binding.notesTitle.text.toString()
-            val notesDesc = binding.notesDesc.text.toString()
+            val notesDesc = binding.notesDesc.getMD()
 
             val sdf = SimpleDateFormat("dd/M/yyy hh:mm:ss")
             val currentDate = sdf.format(Date())
@@ -122,50 +136,50 @@ class NotesCreateFragment : Fragment() {
             bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
             bottomSheetMoreOptions.show()
 
-            val dark = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote0)
-            val purple = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote1)
-            val orange = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote2)
-            val green = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote3)
-
-            dark?.setOnClickListener {
-                priorityColor = "0"
-
-                dark.setImageResource(R.drawable.ic_check_24)
-                purple?.setImageResource(0)
-                orange?.setImageResource(0)
-                green?.setImageResource(0)
-
-            }
-
-            purple?.setOnClickListener {
-                priorityColor = "1"
-
-                purple.setImageResource(R.drawable.ic_check_24)
-                dark?.setImageResource(0)
-                orange?.setImageResource(0)
-                green?.setImageResource(0)
-
-            }
-
-            orange?.setOnClickListener {
-                priorityColor = "2"
-
-                orange.setImageResource(R.drawable.ic_check_24)
-                dark?.setImageResource(0)
-                purple?.setImageResource(0)
-                green?.setImageResource(0)
-
-            }
-
-            green?.setOnClickListener {
-                priorityColor = "3"
-
-                green.setImageResource(R.drawable.ic_check_24)
-                dark?.setImageResource(0)
-                orange?.setImageResource(0)
-                purple?.setImageResource(0)
-
-            }
+//            val dark = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote0)
+//            val purple = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote1)
+//            val orange = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote2)
+//            val green = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote3)
+//
+//            dark?.setOnClickListener {
+//                priorityColor = "0"
+//
+//                dark.setImageResource(R.drawable.ic_check_24)
+//                purple?.setImageResource(0)
+//                orange?.setImageResource(0)
+//                green?.setImageResource(0)
+//
+//            }
+//
+//            purple?.setOnClickListener {
+//                priorityColor = "1"
+//
+//                purple.setImageResource(R.drawable.ic_check_24)
+//                dark?.setImageResource(0)
+//                orange?.setImageResource(0)
+//                green?.setImageResource(0)
+//
+//            }
+//
+//            orange?.setOnClickListener {
+//                priorityColor = "2"
+//
+//                orange.setImageResource(R.drawable.ic_check_24)
+//                dark?.setImageResource(0)
+//                purple?.setImageResource(0)
+//                green?.setImageResource(0)
+//
+//            }
+//
+//            green?.setOnClickListener {
+//                priorityColor = "3"
+//
+//                green.setImageResource(R.drawable.ic_check_24)
+//                dark?.setImageResource(0)
+//                orange?.setImageResource(0)
+//                purple?.setImageResource(0)
+//
+//            }
 
 
         }

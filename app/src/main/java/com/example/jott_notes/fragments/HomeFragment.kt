@@ -3,13 +3,16 @@ package com.example.jott_notes.fragments
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.jott_notes.R
 import com.example.jott_notes.adapters.NotesRvAdapter
@@ -17,16 +20,21 @@ import com.example.jott_notes.databinding.FragmentHomeBinding
 import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
+    val addednotes by navArgs<EditNotesFragmentArgs>()
+
     lateinit var binding: FragmentHomeBinding
     val viewModel: NotesViewModel by viewModels()
     var notes = ArrayList<Notes>()
-    lateinit var adapter: NotesRvAdapter
+     private lateinit var adapter: NotesRvAdapter
+
 
 
 
@@ -81,10 +89,26 @@ class HomeFragment : Fragment() {
 
         viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
             notes = notesList as ArrayList<Notes>
+
+          // adapter = NotesRvAdapter(requireContext(),notesList)
+
+//            binding?.RvNotes?.apply {
+//                adapter = adapter
+//
+//                layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+//
+//                //adapter = NotesRvAdapter(requireContext(),notesList)
+//                ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(this)
+//                adapter?.notifyDataSetChanged()
+//            }
             binding.RvNotes.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             adapter = NotesRvAdapter(requireContext(),notesList)
-            binding.RvNotes.adapter = adapter
+            binding.RvNotes.adapter = adapter.apply {
+                ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(Rv_notes)
+            }
+
+
 
         })
 
@@ -115,6 +139,8 @@ class HomeFragment : Fragment() {
 
         })
 
+//        swipeToDelete(binding.RvNotes)
+
 
 
 //    companion object {
@@ -131,6 +157,63 @@ class HomeFragment : Fragment() {
 
 
     }
+
+    val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+        0,
+        ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+    ){
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            return true
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val position = viewHolder.layoutPosition
+            val notes = adapter.notesList[position]
+            viewModel.deleteNotes(notes.id!!)
+            Snackbar.make(
+                requireView(),"Note deleted Succesfully !",Snackbar.LENGTH_LONG
+            ).apply {
+                setAction(
+                    "Undo"
+                ){
+                    viewModel.addNotes(notes)
+                }
+                show()
+            }
+
+        }
+
+    }
+
+//    private fun swipeToDelete(rvNotes: RecyclerView) {
+//
+//        val swipeToDeleteCallback = object : SwipeDelete(){
+//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+//
+//                val position = viewHolder.layoutPosition
+//                val note = adapter.notesList[position]
+//
+//                note.id?.let { viewModel.deleteNotes(it) }
+//
+//                Snackbar.make(
+//                    requireView(),"Note deleted Succesfully !",Snackbar.LENGTH_LONG
+//                ).apply {
+//                    setAction(
+//                        "Undo"
+//                    ){
+//                        viewModel.addNotes(note)
+//                    }
+//                    show()
+//                }
+//
+//
+//            }
+//        }
+//    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.moremain,menu)
