@@ -9,8 +9,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.onNavDestinationSelected
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -29,6 +31,8 @@ import kotlin.collections.ArrayList
 class HomeFragment : Fragment() {
 
     val addednotes by navArgs<EditNotesFragmentArgs>()
+
+    private lateinit var navController : NavController
 
     lateinit var binding: FragmentHomeBinding
     val viewModel: NotesViewModel by viewModels()
@@ -189,35 +193,21 @@ class HomeFragment : Fragment() {
 
     }
 
-//    private fun swipeToDelete(rvNotes: RecyclerView) {
-//
-//        val swipeToDeleteCallback = object : SwipeDelete(){
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//
-//                val position = viewHolder.layoutPosition
-//                val note = adapter.notesList[position]
-//
-//                note.id?.let { viewModel.deleteNotes(it) }
-//
-//                Snackbar.make(
-//                    requireView(),"Note deleted Succesfully !",Snackbar.LENGTH_LONG
-//                ).apply {
-//                    setAction(
-//                        "Undo"
-//                    ){
-//                        viewModel.addNotes(note)
-//                    }
-//                    show()
-//                }
-//
-//
-//            }
-//        }
-//    }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.moremain,menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.itemId == R.id.aboutSection){
+           Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_aboutFragment)
+
+        }
+                 return super.onOptionsItemSelected(item)
+
     }
 
 
