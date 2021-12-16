@@ -1,16 +1,14 @@
 package com.example.jott_notes.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-
 import androidx.navigation.fragment.navArgs
 import com.example.jott_notes.R
 import com.example.jott_notes.databinding.FragmentNotesCreateBinding
@@ -28,6 +26,8 @@ class EditNotesFragment : Fragment() {
     lateinit var binding: FragmentNotesCreateBinding
 
     val viewModel: NotesViewModel by viewModels()
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,52 +124,16 @@ class EditNotesFragment : Fragment() {
             bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
             bottomSheetMoreOptions.show()
 
-//            val dark = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote0)
-//            val purple = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote1)
-//            val orange = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote2)
-//            val green = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote3)
 //
-//            dark?.setOnClickListener {
-//                priorityColor = "0"
-//
-//                dark.setImageResource(R.drawable.ic_check_24)
-//                purple?.setImageResource(0)
-//                orange?.setImageResource(0)
-//                green?.setImageResource(0)
-//
-//            }
-//
-//            purple?.setOnClickListener {
-//                priorityColor = "1"
-//
-//                purple.setImageResource(R.drawable.ic_check_24)
-//                dark?.setImageResource(0)
-//                orange?.setImageResource(0)
-//                green?.setImageResource(0)
-//
-//            }
-//
-//            orange?.setOnClickListener {
-//                priorityColor = "2"
-//
-//                orange.setImageResource(R.drawable.ic_check_24)
-//                dark?.setImageResource(0)
-//                purple?.setImageResource(0)
-//                green?.setImageResource(0)
-//
-//            }
-//
-//            green?.setOnClickListener {
-//                priorityColor = "3"
-//
-//                green.setImageResource(R.drawable.ic_check_24)
-//                dark?.setImageResource(0)
-//                orange?.setImageResource(0)
-//                purple?.setImageResource(0)
-//
-//            }
 
 
+        }
+        if (item.itemId == R.id.shareButton) {
+            val share = Intent()
+            share.action = Intent.ACTION_SEND
+            share.type = "text/plain"
+            share.putExtra(Intent.EXTRA_TEXT,binding.notesDesc.getMD())
+            context?.startActivity(Intent.createChooser(share,getString(R.string.app_name)))
         }
 //        if (item.itemId == R.id.Delete) {
 //            val bottomSheetDelete = BottomSheetDialog(requireContext(),R.style.BottomSheetDialogTheme)
@@ -217,7 +181,7 @@ class EditNotesFragment : Fragment() {
     companion object {
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             EditNotesFragment().apply {
                 arguments = Bundle().apply {
 

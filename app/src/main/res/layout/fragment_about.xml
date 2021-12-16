@@ -107,7 +107,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="© SpsDen"
+                android:text="Made with Love ❤️ © Spsden"
                 android:textColor="#a6a6a6"
                 android:textSize="16sp" />
 
@@ -115,6 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:paddingTop="5dp"
                 android:text="Version: 0.1 Beta"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
