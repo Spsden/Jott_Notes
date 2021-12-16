@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -78,6 +79,12 @@ class HomeFragment : Fragment() {
 
 
         binding.fbAddButton.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(R.id.action_homeFragment_to_notesCreateFragment)
+        }
+        return binding.root
+
+        binding.chatFabText.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_homeFragment_to_notesCreateFragment)
         }
@@ -156,6 +163,23 @@ class HomeFragment : Fragment() {
 //                }
 //            }
 //    }
+
+//        binding.nestedScrollView.addO
+
+        binding.nestedScrollView.setOnScrollChangeListener { _, scrollX, scrollY, _, oldScrollY ->
+            when {
+                scrollY > oldScrollY -> {
+                    binding.chatFabText.isVisible = false
+                }
+                scrollX == scrollY -> {
+                    binding.chatFabText.isVisible = true
+                }
+
+                else -> {
+                    binding.chatFabText.isVisible = true
+                }
+            }
+        }
 
 
 

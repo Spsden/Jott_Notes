@@ -2,9 +2,12 @@ package com.example.jott_notes.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.*
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,17 +18,19 @@ import com.example.jott_notes.databinding.FragmentNotesCreateBinding
 import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.fragment_edit_notes.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class EditNotesFragment : Fragment() {
 
-    val addednotes by navArgs<EditNotesFragmentArgs>()
+    private val addednotes by navArgs<EditNotesFragmentArgs>()
     var priorityColor: String = "0"
-    lateinit var binding: FragmentNotesCreateBinding
+    private lateinit var tts : TextToSpeech
+    private lateinit var binding: FragmentNotesCreateBinding
 
-    val viewModel: NotesViewModel by viewModels()
+    private val viewModel: NotesViewModel by viewModels()
 
 
 
@@ -34,6 +39,14 @@ class EditNotesFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
+        }
+
+        val onBackPressedCallback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+//                tts.stop()
+//                tts.shutdown()
+                view?.let { Navigation.findNavController(it).popBackStack() }
+            }
         }
     }
 
@@ -51,6 +64,8 @@ class EditNotesFragment : Fragment() {
 
 
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -124,7 +139,23 @@ class EditNotesFragment : Fragment() {
             bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
             bottomSheetMoreOptions.show()
 
-//
+            val textToSpeech = bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
+
+            textToSpeech?.setOnClickListener {
+                 tts = TextToSpeech(context?.applicationContext) {
+                     if (it == TextToSpeech.SUCCESS) {
+
+                         tts.language = Locale.getDefault()
+                         tts.setSpeechRate(1.0f)
+                         tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_FLUSH, null)
+
+                     }
+
+                 }
+
+            }
+
+
 
 
         }
@@ -177,6 +208,16 @@ class EditNotesFragment : Fragment() {
 
         return super.onOptionsItemSelected(item)
     }
+
+
+//    override fun onDestroy() {
+//        // Shutdown TTS
+//        tts.stop()
+//        tts.shutdown()
+//        super.onDestroy()
+//    }
+
+
 
     companion object {
 

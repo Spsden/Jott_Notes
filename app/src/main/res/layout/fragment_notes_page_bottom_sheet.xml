@@ -40,7 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="7dp"
             android:fontFamily="@font/josefinsanssemibold"
-            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="Accent Colour"
             android:layout_gravity="start"
             android:background="@drawable/bottom_sheet_boxes"
@@ -70,7 +71,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/colorPicker"
-                android:padding="10dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
 
@@ -92,9 +92,9 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginHorizontal="40dp"
+        android:layout_marginHorizontal="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="15dp"
         android:layout_weight="100"
@@ -133,8 +133,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
             android:layout_weight="50"
+            android:layout_marginEnd="3dp"
+            android:layout_marginLeft="3dp"
             android:background="@drawable/bottom_sheet_boxes"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -149,9 +150,41 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/josefinsanssemibold"
                 android:text="Add Link"
+                android:textColor="@color/white"
+                android:textSize="15sp">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/textToSpeech"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="50"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="@drawable/bottom_sheet_boxes"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_voice_24dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/josefinsanssemibold"
+                android:text="Read Out"
                 android:textColor="@color/white"
                 android:textSize="15sp">
 

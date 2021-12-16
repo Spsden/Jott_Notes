@@ -105,6 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/main_page_design"
+            android:fillViewport="true"
             android:paddingHorizontal="5dp"
             android:paddingVertical="24dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -119,7 +120,7 @@
                     android:id="@+id/Rv_notes"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
+                    tools:listitem="@layout/rvcard"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -146,20 +147,70 @@
         </androidx.core.widget.NestedScrollView>
 
 
-
-
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <LinearLayout
             android:id="@+id/fb_add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="20dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
             android:backgroundTint="@color/menu_and_accents"
-            android:src="@drawable/ic_baseline_add_24"
-            app:borderWidth="0dp">
+            android:background="@drawable/fab__button_linear_layout"
+            android:layout_margin="16dp"
+            >
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/inner_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                app:elevation="0dp"
+                app:fabSize="normal"
+                app:useCompatPadding="false"
+                android:animateLayoutChanges="true"
+                android:backgroundTint="@color/menu_and_accents"
+                android:src="@drawable/ic_baseline_add_24"
+                app:borderWidth="0dp">
 
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+            </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/chatFabText"
+                android:fontFamily="@font/josefinsanssemibold"
+                android:text="Add Note"
+                android:textColor="@color/white"
+                android:paddingStart="0dp"
+                android:paddingEnd="20dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fb_add_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="bottom|end"-->
+<!--            android:layout_margin="20dp"-->
+<!--            android:backgroundTint="@color/menu_and_accents"-->
+<!--            android:src="@drawable/ic_baseline_add_24"-->
+<!--            app:borderWidth="0dp">-->
+
+<!--        </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
