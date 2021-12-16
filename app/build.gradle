@@ -113,6 +113,11 @@ dependencies {
     //materialComponents
     implementation 'com.google.android.material:material:1.4.0'
 
+    //customSwitches
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+
+
+
 
 
 }

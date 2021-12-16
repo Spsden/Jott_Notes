@@ -34,11 +34,125 @@
         android:background="@drawable/bottom_sheet_options_graphic" />
 
 
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_weight="100"
+
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="50"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bottom_sheet_boxes"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_image_24">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="@font/josefinsanssemibold"
+                android:text="Add Image"
+                android:textColor="@color/white"
+                android:textSize="15sp">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bottom_sheet_boxes"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_baseline_add_link_24">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/josefinsanssemibold"
+                android:text="Add Link"
+                android:textColor="@color/white"
+                android:textSize="15sp">
+
+            </TextView>
+        </LinearLayout>
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+<!--    <com.polyak.iconswitch.IconSwitch-->
+<!--        android:id="@+id/textToSpeechInner"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        app:isw_default_selection="left"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:isw_icon_left="@drawable/ic_volume_off_24"-->
+<!--        app:isw_icon_right="@drawable/ic_volume_up_24" />-->
+
+    <LinearLayout
+        android:id="@+id/textToSpeech"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginVertical="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="50"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@drawable/bottom_sheet_boxes"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+       <com.google.android.material.switchmaterial.SwitchMaterial
+           android:id="@+id/switch_button"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           >
+
+       </com.google.android.material.switchmaterial.SwitchMaterial>
+
+
+        <TextView
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/josefinsanssemibold"
+            android:text="Read Out"
+            android:textColor="@color/white"
+            android:textSize="15sp">
+
+        </TextView>
+    </LinearLayout>
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="7dp"
             android:fontFamily="@font/josefinsanssemibold"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
@@ -90,108 +204,6 @@
 
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:layout_weight="100"
 
-        android:orientation="horizontal">
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="3dp"
-            android:layout_weight="50"
-            android:background="@drawable/bottom_sheet_boxes"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_baseline_image_24">
-
-            </ImageView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="7dp"
-                android:fontFamily="@font/josefinsanssemibold"
-                android:text="Add Image"
-                android:textColor="@color/white"
-                android:textSize="15sp">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:layout_marginEnd="3dp"
-            android:layout_marginLeft="3dp"
-            android:background="@drawable/bottom_sheet_boxes"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_baseline_add_link_24">
-
-            </ImageView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/josefinsanssemibold"
-                android:text="Add Link"
-                android:textColor="@color/white"
-                android:textSize="15sp">
-
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/textToSpeech"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_weight="50"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:background="@drawable/bottom_sheet_boxes"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_voice_24dp">
-
-            </ImageView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/josefinsanssemibold"
-                android:text="Read Out"
-                android:textColor="@color/white"
-                android:textSize="15sp">
-
-            </TextView>
-        </LinearLayout>
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </LinearLayout>

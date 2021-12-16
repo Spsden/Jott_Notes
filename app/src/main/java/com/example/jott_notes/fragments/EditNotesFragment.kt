@@ -7,8 +7,8 @@ import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -31,6 +31,7 @@ class EditNotesFragment : Fragment() {
     private lateinit var binding: FragmentNotesCreateBinding
 
     private val viewModel: NotesViewModel by viewModels()
+    private lateinit var iconSwitch:com.suke.widget.SwitchButton
 
 
 
@@ -41,29 +42,61 @@ class EditNotesFragment : Fragment() {
 
         }
 
-        val onBackPressedCallback = object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-//                tts.stop()
-//                tts.shutdown()
-                view?.let { Navigation.findNavController(it).popBackStack() }
-            }
-        }
+
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+
+
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
         (activity as AppCompatActivity?)!!.supportActionBar?.title = "Edit Note"
+
+
 
         binding = FragmentNotesCreateBinding.inflate(layoutInflater,container,false)
         setHasOptionsMenu(true)
 
 
+//        val callback = object : OnBackPressedCallback(true){
+//            override fun handleOnBackPressed() {
+////                textToSpeech?.setOnClickListener {
+////                    tts = TextToSpeech(context?.applicationContext) {
+////                        if (tts.isSpeaking) {
+////                            tts.stop()
+////                            tts.shutdown()
+////
+////
+////                        }else
+////                        {
+////                            Toast.makeText(context,"jhfdh",Toast.LENGTH_SHORT).show()
+////                        }
+////
+////                    }
+////                }
+//                findNavController().popBackStack()
+//
+//                // if you want onBackPressed() to be called as normal afterwards
+//                if (isEnabled) {
+//                    isEnabled = false
+//                    requireActivity().onBackPressed()
+//                }
+//            }
+//
+//        }
+//
+//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+
+
 
         return binding.root
+
+
 
 
     }
@@ -139,26 +172,27 @@ class EditNotesFragment : Fragment() {
             bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
             bottomSheetMoreOptions.show()
 
-            val textToSpeech = bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
+            val iconSwitch = bottomSheetMoreOptions.findViewById<SwitchCompat>(R.id.switch_button)
 
-            textToSpeech?.setOnClickListener {
-                 tts = TextToSpeech(context?.applicationContext) {
-                     if (it == TextToSpeech.SUCCESS) {
+            val layut = bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
 
-                         tts.language = Locale.getDefault()
-                         tts.setSpeechRate(1.0f)
-                         tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_FLUSH, null)
+            iconSwitch?.setOnClickListener {
+                if (iconSwitch.isChecked){
+                    tts = TextToSpeech(context?.applicationContext) {
+                        if (it == TextToSpeech.SUCCESS) {
+                            tts.language = Locale.getDefault()
+                            tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_ADD, null)
+                        }
+                    }
+                }
+                else{
+                    stopTextToSpeech()
 
-                     }
-
-                 }
-
+                }
             }
 
-
-
-
         }
+
         if (item.itemId == R.id.shareButton) {
             val share = Intent()
             share.action = Intent.ACTION_SEND
@@ -166,56 +200,42 @@ class EditNotesFragment : Fragment() {
             share.putExtra(Intent.EXTRA_TEXT,binding.notesDesc.getMD())
             context?.startActivity(Intent.createChooser(share,getString(R.string.app_name)))
         }
-//        if (item.itemId == R.id.Delete) {
-//            val bottomSheetDelete = BottomSheetDialog(requireContext(),R.style.BottomSheetDialogTheme)
-//            bottomSheetDelete.setContentView(R.layout.fragment_delete_bottom_sheet)
-//
-//
-//            bottomSheetDelete.show()
-//
-//            val yesDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteYes)
-//            val noDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteNo)
-//
-//            yesDelete?.setOnClickListener {
-//                viewModel.deleteNotes(addednotes.dataTransfer?.id!!)
-//                Toast.makeText(
-//                    activity?.applicationContext,
-//                    "Note Deleted Successfully",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                //requireActivity().supportFragmentManager.popBackStack()
-//
-//                //Navigation.findNavController(it).popBackStack(R.id.homeFragment,true)
-//
-//               // Navigation.findNavController(it!!).navigate(R.id.action_deleteBottomSheet2_to_homeFragment)
-//
-//
-//               bottomSheetDelete.dismissWithAnimation
-//
-//
-//
-//                //Navigation.findNavController(it).popBackStack()
-//
-//
-//
-//            }
-//            noDelete?.setOnClickListener {
-//                bottomSheetDelete.dismiss()
-//
-//            }
-//
-//        }
+
 
         return super.onOptionsItemSelected(item)
     }
 
+    private fun stopTextToSpeech() {
+        //Log.e("@@@@","toggle check")
+        Toast.makeText(context,"Reader Stopped",Toast.LENGTH_SHORT).show()
+        if (tts.isSpeaking){
+            tts.stop()
+            tts.shutdown()
+        }
+        else
+        {
+            Toast.makeText(context,"Reader Never Started",Toast.LENGTH_SHORT).show()
+        }
 
-//    override fun onDestroy() {
-//        // Shutdown TTS
-//        tts.stop()
-//        tts.shutdown()
-//        super.onDestroy()
+    }
+
+//    private fun startingTextToSpeech() {
+//        Toast.makeText(context,"Text To Speech Is Not Running",Toast.LENGTH_SHORT)
+//
+//        tts = TextToSpeech(context?.applicationContext){
+//                    if (it == TextToSpeech.SUCCESS){
+//                        tts.language = Locale.getDefault()
+//                        tts.setSpeechRate(1.0f)
+//                        tts.speak(notes_desc.text.toString(),TextToSpeech.QUEUE_ADD,null)
+//                    }
+//                }
+//
 //    }
+
+
+
+
+
 
 
 

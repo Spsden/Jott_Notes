@@ -32,6 +32,9 @@
         <entry key="app/src/main/res/drawable/note_color_3.xml" value="0.20462962962962963" />
         <entry key="app/src/main/res/drawable/notes_title_background.xml" value="0.2814814814814815" />
         <entry key="app/src/main/res/drawable/switch_for_tts.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/switch_thumb_false.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/switch_thumb_true.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/track.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.18" />
@@ -39,10 +42,11 @@
         <entry key="app/src/main/res/layout/fragment_edit_notes.xml" value="0.16134751773049646" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_notes_create.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_notes_page_bottom_sheet.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/fragment_notes_page_bottom_sheet.xml" value="0.18" />
         <entry key="app/src/main/res/layout/rvcard.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/switch_layout.xml" value="0.1" />
         <entry key="app/src/main/res/menu/delete.xml" value="0.14010416666666667" />
-        <entry key="app/src/main/res/menu/more.xml" value="0.2" />
+        <entry key="app/src/main/res/menu/more.xml" value="0.1" />
         <entry key="app/src/main/res/menu/moremain.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.24010416666666667" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.24010416666666667" />

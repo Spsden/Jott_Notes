@@ -11,11 +11,11 @@
 
 <!--    </item>-->
 
-    <item android:title="Read"
-        app:showAsAction="always"
-        android:id="@+id/readButton"
-        android:icon="@drawable/ic_share_24"
-        app:actionViewClass="androidx.appcompat.widget.SwitchCompat"/>
+<!--    <item android:title="Read"-->
+<!--        app:showAsAction="always"-->
+<!--        android:id="@+id/readButton"-->
+<!--        app:actionLayout="@layout/switch_layout"-->
+<!--        app:actionViewClass="androidx.appcompat.widget.SwitchCompat"/>-->
 
     <item android:title="Share"
         app:showAsAction="always"
