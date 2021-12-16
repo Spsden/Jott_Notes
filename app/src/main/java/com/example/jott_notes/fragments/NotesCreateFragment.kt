@@ -183,25 +183,25 @@ class NotesCreateFragment : Fragment() {
 
 
         }
-        if (item.itemId == R.id.Delete) {
-            val bottomSheetDelete =
-                BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
-            bottomSheetDelete.setContentView(R.layout.fragment_delete_bottom_sheet)
-            bottomSheetDelete.show()
-
-            val yesDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteYes)
-            val noDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteNo)
-
-            yesDelete?.setOnClickListener {
-                //viewModel.deleteNotes()
-
-            }
-            noDelete?.setOnClickListener {
-                bottomSheetDelete.dismiss()
-
-            }
-
-        }
+//        if (item.itemId == R.id.Delete) {
+//            val bottomSheetDelete =
+//                BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
+//            bottomSheetDelete.setContentView(R.layout.fragment_delete_bottom_sheet)
+//            bottomSheetDelete.show()
+//
+//            val yesDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteYes)
+//            val noDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteNo)
+//
+//            yesDelete?.setOnClickListener {
+//                //viewModel.deleteNotes()
+//
+//            }
+//            noDelete?.setOnClickListener {
+//                bottomSheetDelete.dismiss()
+//
+//            }
+//
+//        }
 
         return super.onOptionsItemSelected(item)
     }

@@ -110,6 +110,9 @@ dependencies {
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    //materialComponents
+    implementation 'com.google.android.material:material:1.4.0'
+
 
 
 }

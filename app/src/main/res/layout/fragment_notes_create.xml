@@ -104,9 +104,7 @@
                         android:layout_marginTop="30dp"
                         android:background="@drawable/notes_title_background"
                         android:ellipsize="end"
-                        android:fontFamily="@font/josefinsansmedium"
                         android:hint='Enter title'
-                        android:letterSpacing="0.1"
                         android:maxLines="1"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="10dp"
@@ -121,7 +119,7 @@
                         android:id="@+id/date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="7dp"
                         android:layout_marginEnd="30dp"
                         android:background="@null"
                         android:ellipsize="end"

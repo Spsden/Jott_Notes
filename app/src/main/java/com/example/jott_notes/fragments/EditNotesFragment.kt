@@ -171,45 +171,45 @@ class EditNotesFragment : Fragment() {
 
 
         }
-        if (item.itemId == R.id.Delete) {
-            val bottomSheetDelete = BottomSheetDialog(requireContext(),R.style.BottomSheetDialogTheme)
-            bottomSheetDelete.setContentView(R.layout.fragment_delete_bottom_sheet)
-
-
-            bottomSheetDelete.show()
-
-            val yesDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteYes)
-            val noDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteNo)
-
-            yesDelete?.setOnClickListener {
-                viewModel.deleteNotes(addednotes.dataTransfer?.id!!)
-                Toast.makeText(
-                    activity?.applicationContext,
-                    "Note Deleted Successfully",
-                    Toast.LENGTH_SHORT
-                ).show()
-                //requireActivity().supportFragmentManager.popBackStack()
-
-                //Navigation.findNavController(it).popBackStack(R.id.homeFragment,true)
-
-               // Navigation.findNavController(it!!).navigate(R.id.action_deleteBottomSheet2_to_homeFragment)
-
-
-               bottomSheetDelete.dismissWithAnimation
-
-
-
-                //Navigation.findNavController(it).popBackStack()
-
-
-
-            }
-            noDelete?.setOnClickListener {
-                bottomSheetDelete.dismiss()
-
-            }
-
-        }
+//        if (item.itemId == R.id.Delete) {
+//            val bottomSheetDelete = BottomSheetDialog(requireContext(),R.style.BottomSheetDialogTheme)
+//            bottomSheetDelete.setContentView(R.layout.fragment_delete_bottom_sheet)
+//
+//
+//            bottomSheetDelete.show()
+//
+//            val yesDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteYes)
+//            val noDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteNo)
+//
+//            yesDelete?.setOnClickListener {
+//                viewModel.deleteNotes(addednotes.dataTransfer?.id!!)
+//                Toast.makeText(
+//                    activity?.applicationContext,
+//                    "Note Deleted Successfully",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                //requireActivity().supportFragmentManager.popBackStack()
+//
+//                //Navigation.findNavController(it).popBackStack(R.id.homeFragment,true)
+//
+//               // Navigation.findNavController(it!!).navigate(R.id.action_deleteBottomSheet2_to_homeFragment)
+//
+//
+//               bottomSheetDelete.dismissWithAnimation
+//
+//
+//
+//                //Navigation.findNavController(it).popBackStack()
+//
+//
+//
+//            }
+//            noDelete?.setOnClickListener {
+//                bottomSheetDelete.dismiss()
+//
+//            }
+//
+//        }
 
         return super.onOptionsItemSelected(item)
     }

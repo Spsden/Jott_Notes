@@ -125,6 +125,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
+                <ImageView
+                    android:id="@+id/noData"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/no_data"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.7">
+
+                </ImageView>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
