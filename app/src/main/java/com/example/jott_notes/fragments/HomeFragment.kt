@@ -100,6 +100,7 @@ class HomeFragment : Fragment() {
 
         viewModel.getNotes().observe(viewLifecycleOwner, { notesList ->
             notes = notesList as ArrayList<Notes>
+            notesList.reverse()
 
           // adapter = NotesRvAdapter(requireContext(),notesList)
 
