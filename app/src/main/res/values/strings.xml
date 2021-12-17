@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Jott_Notes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="notes">Notes</string>
+    <string name="title" />
+    <string name="your_note_here">Your note here</string>
+    <string name="are_you_sure">Are You Sure ?</string>
+    <string name="add_note">Add Note</string>
+    <string name="accent_colour">Accent Colour</string>
+    <string name="add_image">Add Image</string>
+    <string name="add_link">Add Link</string>
+    <string name="options_vector">Options vector</string>
+    <string name="modified_on" formatted="true">Modified on</string>
+
+</resources>

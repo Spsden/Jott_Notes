@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:foregroundGravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/bottom_sheet"
+        android:id="@+id/bottomSheetParent">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/bottom_sheet_options_graphic">
+
+        </ImageView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/accentColor"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/accent_colour"
+            android:textColor="@color/white"
+            android:background="@drawable/bottom_sheet_boxes"
+            android:fontFamily="@font/josefinsansbold"
+            android:textSize="18sp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="start">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scrollView"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_sheet_boxes"
+            android:scrollbars="horizontal">
+
+            <com.thebluealliance.spectrum.SpectrumPalette
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/colorPicker"
+                android:layout_marginVertical="6dp"
+
+                app:spectrum_colors="@array/color_picker"
+                app:spectrum_autoPadding="true"
+                android:scrollbars="horizontal"
+                app:spectrum_columnCount="16">
+
+            </com.thebluealliance.spectrum.SpectrumPalette>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+</layout>
+
+
+
+
+
+

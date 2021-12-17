@@ -1,0 +1,133 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
+    //id 'kotlin-parcelize'
+
+}
+//apply plugin: "androidx.navigation.safeargs.kotlin"
+//apply plugin: 'org.jetbrains.kotlin.android.extensions'
+
+android {
+    compileSdk 32
+
+//    androidExtensions {
+//        experimental = true
+//    }
+
+    dataBinding {
+        enabled true
+    }
+
+    defaultConfig {
+        applicationId "com.example.jott_notes"
+        minSdk 23
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures{
+        viewBinding true
+        dataBinding true
+    }
+    dataBinding {
+        android.buildFeatures.dataBinding = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //Navigation Components
+    implementation "androidx.fragment:fragment-ktx:1.4.0"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    //implementation "android.arch.navigation:navigation-fragment-ktx:1.0.0"
+
+    //Room Database
+    implementation "androidx.room:room-runtime:2.3.0"
+    kapt "androidx.room:room-compiler:2.3.0"
+    implementation "androidx.room:room-ktx:2.3.0"
+    androidTestImplementation "androidx.room:room-testing:2.3.0"
+
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    implementation 'androidx.activity:activity-ktx:1.4.0'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
+
+    // Kotlin components
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0"
+
+
+
+    //forvectordrawable
+    //noinspection GradleCompatible
+    implementation("com.android.support:appcompat-v7:23.2.0")
+
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+    implementation 'com.google.android.material:material:1.6.0-alpha01'
+    //noinspection GradleCompatible,GradleCompatible
+    implementation 'com.android.support:design:26.1.0'
+
+    // RecyclerView Animator
+    implementation "androidx.recyclerview:recyclerview:1.3.0-alpha01"
+    implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //color picker library
+    implementation 'com.thebluealliance:spectrum:0.7.1'
+
+    implementation 'com.yahiaangelo.markdownedittext:markdownedittext:1.1.1'
+    implementation "io.noties.markwon:core:4.6.0"
+    implementation "io.noties.markwon:ext-strikethrough:4.6.0"
+    implementation "io.noties.markwon:ext-tasklist:4.6.0"
+
+    // Annotation processor
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.4.0"
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
+
+
+    implementation "androidx.room:room-runtime:2.4.0-rc01"
+    //implementation "androidx.room:room-coroutines:2.1.0-alpha04"
+    kapt "androidx.room:room-compiler:2.4.0-rc01"
+
+    //material Components
+    implementation 'com.google.android.material:material:1.6.0-alpha01'
+
+
+
+}

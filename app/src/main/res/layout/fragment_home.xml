@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context = ".fragments.HomeFragment"
+        android:background="@color/menu_and_accents">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:liftOnScroll="true"
+            android:backgroundTint="@color/menu_and_accents"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|snap|enterAlways"
+                app:title="Jott Notes"
+                >
+
+
+                <!--            <ImageView-->
+                <!--                android:id="@+id/imageViewCollapsing"-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="200dp"-->
+                <!--                android:scaleType="centerCrop"-->
+                <!--                android:src="@drawable/image22"-->
+                <!--                app:layout_collapseMode="parallax" />-->
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    android:minHeight="0dp"
+
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" >
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/searchViewQuery"
+            android:backgroundTint="@color/white"
+            android:drawableStart="@drawable/ic_search_24"
+            android:drawablePadding="5dp"
+            app:layout_anchor="@id/appBarLayout"
+            app:layout_anchorGravity="bottom|end"
+            android:paddingHorizontal="18dp"
+            android:paddingTop="4dp"
+            android:textSize="16sp"
+            android:autofillHints="no"
+            android:textColorHint="@color/float_cards"
+            android:imeOptions="actionSearch"
+            app:layout_scrollFlags="scroll|snap"
+            android:hint="Search Notes"
+            app:popupTheme="@style/Widget.AppCompat.PopupMenu">
+
+        </EditText>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/cardView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_anchor="@id/appBarLayout"-->
+<!--                app:layout_anchorGravity="right|bottom|end"-->
+<!--                app:cardBackgroundColor="@color/float_cards"-->
+<!--                app:cardCornerRadius="50dp"-->
+<!--                app:cardElevation="5dp"-->
+
+<!--                app:cardUseCompatPadding="true"-->
+<!--                app:layout_scrollFlags="scroll|snap">-->
+
+<!--                <androidx.appcompat.widget.SearchView-->
+<!--                    android:id="@+id/searchViewQuery"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:gravity="center_horizontal"-->
+<!--                    app:popupTheme="@style/Widget.AppCompat.PopupMenu"-->
+<!--                    app:queryHint="Search Note" />-->
+
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/main_page_design"
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="24dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+<!--            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/Rv_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:transitionGroup="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/rvcard">
+
+                </androidx.recyclerview.widget.RecyclerView>
+                
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:id="@+id/noData"
+                    android:src="@drawable/no_data"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="gone">
+
+                </ImageView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/fb_add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:focusable="true"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            android:backgroundTint="@color/menu_and_accents"
+            android:background="@drawable/fab__button_linear_layout"
+            android:layout_margin="16dp"
+            >
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/inner_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:focusable="true"
+                android:clickable="true"
+                app:elevation="0dp"
+                app:fabSize="normal"
+                app:useCompatPadding="false"
+                android:animateLayoutChanges="true"
+                android:backgroundTint="@color/menu_and_accents"
+                android:src="@drawable/ic_baseline_add_24"
+                app:borderWidth="0dp">
+
+            </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/chatFabText"
+                android:fontFamily="@font/josefinsanssemibold"
+                android:text="@string/add_note"
+                android:textColor="@color/white"
+                android:paddingStart="0dp"
+                android:paddingEnd="20dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
