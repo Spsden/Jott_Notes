@@ -110,17 +110,6 @@ class HomeFragment : Fragment() {
             notes = notesList as ArrayList<Notes>
             notesList.reverse()
 
-            // adapter = NotesRvAdapter(requireContext(),notesList)
-
-//            binding?.RvNotes?.apply {
-//                adapter = adapter
-//
-//                layoutManager = StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
-//
-//                //adapter = NotesRvAdapter(requireContext(),notesList)
-//                ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(this)
-//                adapter?.notifyDataSetChanged()
-//            }
             binding.RvNotes.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             adapter = NotesRvAdapter(requireContext(), notesList)
@@ -132,6 +121,8 @@ class HomeFragment : Fragment() {
                     startPostponedEnterTransition()
                     true
                 }
+
+                binding.noData.isVisible = adapter.itemCount == 0
                 ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(Rv_notes)
             }
 
@@ -197,6 +188,8 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
+
 
 
     }
