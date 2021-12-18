@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
     private lateinit var navController: NavController
     //var defaultColor = requireContext().getColor(R.color.menu_and_accents)
 
-    lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
     val viewModel: NotesViewModel by viewModels()
     var notes = ArrayList<Notes>()
     private lateinit var adapter: NotesRvAdapter
@@ -69,7 +69,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
 
         (activity as AppCompatActivity?)!!.supportActionBar?.title = ""
@@ -142,7 +142,7 @@ class HomeFragment : Fragment() {
 
             override fun onQueryTextChange(p0: String?): Boolean {
 
-                var tempArr = ArrayList<Notes>()
+                val tempArr = ArrayList<Notes>()
 
                 for (i in notes) {
                     if (i.title.toLowerCase(Locale.getDefault())
@@ -199,7 +199,7 @@ class HomeFragment : Fragment() {
             .navigate(R.id.action_homeFragment_to_aboutFragment)
     }
 
-    val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+    private val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
         0,
         ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
     ) {

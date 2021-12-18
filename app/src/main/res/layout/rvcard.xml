@@ -24,7 +24,6 @@
             app:strokeWidth="1dp"
             app:strokeColor="@color/menu_and_accents"
             android:layout_margin="5dp"
-            android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/float_cards"
             android:padding="5dp">
 

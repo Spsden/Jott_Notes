@@ -1,6 +1,5 @@
 package com.example.jott_notes.fragments
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,8 +24,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.transition.MaterialContainerTransform
 import com.thebluealliance.spectrum.SpectrumPalette
 import kotlinx.android.synthetic.main.fragment_edit_notes.*
-import kotlinx.android.synthetic.main.fragment_home.*
-import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -202,7 +198,7 @@ class EditNotesFragment : Fragment() {
 
             val iconSwitch = bottomSheetMoreOptions.findViewById<SwitchCompat>(R.id.switch_button)
 
-            val layut = bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
+            bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
 //            iconSwitch?.setOnClickListener {
 //                tts = TextToSpeech(context?.applicationContext){
 //                    tts.setSpeechRate(0.7f)

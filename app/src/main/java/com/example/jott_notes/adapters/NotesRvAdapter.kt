@@ -1,6 +1,7 @@
 package com.example.jott_notes.adapters
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -77,6 +78,10 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
         holder.binding.rvCard.strokeColor = notesList[position].color
         holder.binding.rvCard.transitionName = "recyclerView_${notesList[position].id}"
         val rvCardNew = holder.binding.rvCard.rootView
+
+        var colorInt = notesList[position].color
+        var colorState = ColorStateList.valueOf(colorInt)
+        holder.binding.rvCard.rippleColor = colorState
 
 
 
