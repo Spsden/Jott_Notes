@@ -31,7 +31,7 @@ class EditNotesFragment : Fragment() {
     private lateinit var binding: FragmentNotesCreateBinding
 
     private val viewModel: NotesViewModel by viewModels()
-    private lateinit var iconSwitch:com.suke.widget.SwitchButton
+
 
 
 

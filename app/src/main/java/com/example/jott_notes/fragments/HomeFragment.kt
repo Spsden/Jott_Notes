@@ -24,9 +24,11 @@ import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialElevationScale
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
@@ -45,6 +47,14 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+//        exitTransition = MaterialElevationScale(false).apply {
+//            duration = 300
+//        }
+//
+//        enterTransition = MaterialElevationScale(true).apply {
+//            duration = 300
+//        }
         arguments?.let {
 
             val toolbar: Toolbar = binding.toolbar
@@ -117,6 +127,14 @@ class HomeFragment : Fragment() {
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             adapter = NotesRvAdapter(requireContext(),notesList)
             binding.RvNotes.adapter = adapter.apply {
+                //postponeEnterTransition(300L, TimeUnit.MILLISECONDS)
+                //adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+//                view.viewTreeObserver.addOnDrawListener {
+//                    startPostponedEnterTransition()
+//                    true
+//                }
+
+
                 ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(Rv_notes)
             }
 

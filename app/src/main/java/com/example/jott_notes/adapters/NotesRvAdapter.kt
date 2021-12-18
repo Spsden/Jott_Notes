@@ -30,7 +30,7 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
 
     {
 
-        //private val rvcardBinding = RvcardBinding.bind(itemView)
+//        private val rvcardBinding = RvcardBinding.bind(itemView)
 
 //        val cardTitle = rvcardBinding.titleThumb
 //        val notesDescription = rvcardBinding.noteDescThumb
@@ -60,6 +60,13 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         holder.binding.titleThumb.text = notesList[position].title
         holder.binding.noteDescThumb.text = notesList[position].notesdesc
+
+//        getItemId(position).let {notesList
+//            holder.apply {
+//                rvCardParent.transitionName = "recyclerView_${notesList[position].id}"
+//
+//            }
+//        }
 
 
 

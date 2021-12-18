@@ -19,6 +19,7 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            app:liftOnScroll="true"
             android:backgroundTint="@color/menu_and_accents"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -60,18 +61,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:id="@+id/cardS"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_anchor="@id/appBarLayout"-->
-<!--            app:layout_anchorGravity="end|bottom|right"-->
-<!--            android:layout_marginEnd="32dp"-->
-<!--            app:backgroundTint="@color/float_cards"-->
 
-<!--            >-->
-
-<!--        </com.google.android.material.floatingactionbutton.FloatingActionButton>-->
 
 
             <androidx.cardview.widget.CardView
