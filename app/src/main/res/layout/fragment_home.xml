@@ -12,7 +12,8 @@
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/menu_and_accents">
+        android:background="@color/menu_and_accents"
+        >
 
 
         <com.google.android.material.appbar.AppBarLayout
@@ -30,8 +31,7 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleMarginStart="20dp"
                 app:layout_scrollFlags="scroll|snap|enterAlways"
                 app:title="Jott Notes"
                 >
@@ -51,7 +51,6 @@
                     android:layout_height="?attr/actionBarSize"
                     app:layout_scrollFlags="scroll|enterAlways"
                     android:minHeight="0dp"
-
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" >
 
                 </androidx.appcompat.widget.Toolbar>
@@ -176,6 +175,7 @@
                 android:text="Add Note"
                 android:textColor="@color/white"
                 android:paddingStart="0dp"
+
                 android:paddingEnd="20dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 android:layout_gravity="center_vertical"/>

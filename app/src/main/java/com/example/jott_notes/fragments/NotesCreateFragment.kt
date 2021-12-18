@@ -1,6 +1,5 @@
 package com.example.jott_notes.fragments
 
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
@@ -24,15 +23,10 @@ import java.util.*
 class NotesCreateFragment : Fragment() {
 
     lateinit var binding: FragmentNotesCreateBinding
-
-//    var priorityColor: String = "0"
-
-
-
     private var color: Int = 0
-
-
     val viewModel: NotesViewModel by viewModels()
+    private var READ_STORAGE_PERM = 123
+    private var WRITE_STORAGE_PERM = 123
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -212,4 +206,6 @@ class NotesCreateFragment : Fragment() {
                 }
             }
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.example.jott_notes.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -21,8 +23,11 @@ import com.example.jott_notes.databinding.FragmentNotesCreateBinding
 import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.transition.MaterialContainerTransform
 import com.thebluealliance.spectrum.SpectrumPalette
 import kotlinx.android.synthetic.main.fragment_edit_notes.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,6 +41,7 @@ class EditNotesFragment : Fragment() {
     private lateinit var tts : TextToSpeech
     private lateinit var binding: FragmentNotesCreateBinding
 
+
     private val viewModel: NotesViewModel by viewModels()
 
 
@@ -44,6 +50,18 @@ class EditNotesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val animation = MaterialContainerTransform().apply {
+            drawingViewId = R.id.fragmentContainerView
+            scrimColor = Color.TRANSPARENT
+//            isHoldAtEndEnabled = true
+            isElevationShadowEnabled = false
+            fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
+            duration = 300L
+            //excludeTarget(toolbar,true)
+        }
+        sharedElementEnterTransition = animation
+        sharedElementReturnTransition = animation
 
         arguments?.let {
 
@@ -118,6 +136,11 @@ class EditNotesFragment : Fragment() {
             Log.d("TAG", "FROM EDIT NOTES")
         }
 
+        ViewCompat.setTransitionName(
+            binding.noteContentFragmentParent,
+            "recyclerView_${addednotes.dataTransfer?.id}"
+        )
+
         //binding.frameLayoutEditText.background = addednotes.dataTransfer?.color?.toDrawable()
 
 
@@ -180,9 +203,22 @@ class EditNotesFragment : Fragment() {
             val iconSwitch = bottomSheetMoreOptions.findViewById<SwitchCompat>(R.id.switch_button)
 
             val layut = bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
+//            iconSwitch?.setOnClickListener {
+//                tts = TextToSpeech(context?.applicationContext){
+//                    tts.setSpeechRate(0.7f)
+//
+//                }
+//            }
 
 
             val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
+//
+//            bottomSheetMoreOptions.setOnCancelListener {
+//                tts.stop()
+//            }
+//            bottomSheetMoreOptions.setOnDismissListener {
+//                stopTextToSpeech()
+//            }
 
             colorPick?.apply {
                 setSelectedColor(color)
@@ -205,10 +241,14 @@ class EditNotesFragment : Fragment() {
             }
 
             iconSwitch?.setOnClickListener {
+
+
+
                 if (iconSwitch.isChecked){
                     tts = TextToSpeech(context?.applicationContext) {
                         if (it == TextToSpeech.SUCCESS) {
                             tts.language = Locale.getDefault()
+                            tts.setSpeechRate(0.70f)
                             tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_ADD, null)
                         }
                     }
@@ -234,18 +274,39 @@ class EditNotesFragment : Fragment() {
     }
 
     private fun stopTextToSpeech() {
-        //Log.e("@@@@","toggle check")
-        Toast.makeText(context,"Reader Stopped",Toast.LENGTH_SHORT).show()
-        if (tts.isSpeaking){
-            tts.stop()
-            tts.shutdown()
-        }
-        else
-        {
-            Toast.makeText(context,"Reader Never Started",Toast.LENGTH_SHORT).show()
+        tts = TextToSpeech(context?.applicationContext){
+            Toast.makeText(context,"Reader Stopped",Toast.LENGTH_SHORT).show()
+            if (tts.isSpeaking){
+                tts.stop()
+                tts.shutdown()
+            }
+            else
+            {
+                Toast.makeText(context,"Reader Never Started",Toast.LENGTH_SHORT).show()
+            }
+
         }
 
+
     }
+
+//    private fun textToSpeechall(){
+//        tts = TextToSpeech(context?.applicationContext){
+//            if (tts.isSpeaking){
+//                tts.stop()
+//                tts.shutdown()
+//            }else if (it == TextToSpeech.SUCCESS){
+//                tts.language = Locale.getDefault()
+//                tts.setSpeechRate(0.70f)
+//                tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_ADD, null)
+//
+//            }
+//            else{
+//                tts.shutdown()
+//            }
+//
+//        }
+//    }
 
 
 

@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="noteCard"
+            type="com.example.jott_notes.mvvmstuff.entity.Notes" />
+
+        <variable
+            name="listener"
+            type="com.example.jott_notes.adapters.NotesRvAdapter" />
 
     </data>
 
@@ -15,10 +22,8 @@
             app:cardCornerRadius="10dp"
             android:elevation="5dp"
             app:strokeWidth="1dp"
-            android:transitionName="image_small"
             app:strokeColor="@color/menu_and_accents"
             android:layout_margin="5dp"
-
             android:foreground="?android:attr/selectableItemBackground"
             app:cardBackgroundColor="@color/float_cards"
             android:padding="5dp">

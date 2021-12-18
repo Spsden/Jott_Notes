@@ -6,4 +6,11 @@
     <string name="title" />
     <string name="your_note_here">Your note here</string>
     <string name="are_you_sure">Are You Sure ?</string>
+
+
+
+    <string name="rvCard_recipient_to">To %1$s</string>
+    <string name="rvCard_card_transition_name">rvCard_card_%1$s</string>
+    <string name="rvCard_card_detail_transition_name">rvCard_card_detail</string>
+
 </resources>
