@@ -73,6 +73,7 @@ class HomeFragment : Fragment() {
 
 
         (activity as AppCompatActivity?)!!.supportActionBar?.title = ""
+        (activity as AppCompatActivity?)!!.supportActionBar?.hide()
         (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
             ColorDrawable(
                 ContextCompat.getColor(requireContext(), R.color.menu_and_accents)
@@ -162,15 +163,7 @@ class HomeFragment : Fragment() {
 //        swipeToDelete(binding.RvNotes)
 
 
-//    companion object {
-//
-//        fun newInstance(param1: String, param2: String) =
-//            HomeFragment().apply {
-//                arguments = Bundle().apply {
-//
-//                }
-//            }
-//    }
+
 
 //        binding.nestedScrollView.addO
 
@@ -189,9 +182,21 @@ class HomeFragment : Fragment() {
             }
         }
 
+        binding.showHome.setOnClickListener {
+            launchOptions()
+        }
 
 
 
+
+
+
+    }
+
+    private fun launchOptions() {
+
+        Navigation.findNavController(requireView())
+            .navigate(R.id.action_homeFragment_to_aboutFragment)
     }
 
     val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
@@ -231,16 +236,16 @@ class HomeFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if (item.itemId == R.id.aboutSection) {
-            Navigation.findNavController(requireView())
-                .navigate(R.id.action_homeFragment_to_aboutFragment)
-
-        }
-        return super.onOptionsItemSelected(item)
-
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//
+//        if (item.itemId == R.id.aboutSection) {
+//            Navigation.findNavController(requireView())
+//                .navigate(R.id.action_homeFragment_to_aboutFragment)
+//
+//        }
+//        return super.onOptionsItemSelected(item)
+//
+//    }
 
 
 }

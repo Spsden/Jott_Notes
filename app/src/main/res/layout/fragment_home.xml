@@ -60,10 +60,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
-
-
-            <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,11 +69,17 @@
                 app:cardBackgroundColor="@color/float_cards"
                 app:cardCornerRadius="50dp"
                 app:cardElevation="5dp"
+                android:layout_marginEnd="60dp"
                 app:cardUseCompatPadding="true"
+            app:popupTheme="@style/Widget.AppCompat.PopupMenu"
                 app:layout_scrollFlags="scroll|snap">
+
+
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchViewQuery"
+                    app:layout_anchor="@id/appBarLayout"
+                    app:layout_anchorGravity="right|bottom|end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
@@ -84,8 +87,24 @@
                     app:popupTheme="@style/Widget.AppCompat.PopupMenu"
                     app:queryHint="Search Note" />
 
+            </com.google.android.material.card.MaterialCardView>
 
-            </androidx.cardview.widget.CardView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/showHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/appBarLayout"
+            android:layout_marginEnd="10dp"
+            app:fabCustomSize="50dp"
+            app:tint="@null"
+            android:tint="@color/white"
+            app:backgroundTint="@color/float_cards"
+            app:layout_anchorGravity="right|bottom|end"
+            android:src="@drawable/ic_menu_24">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
 
 
 

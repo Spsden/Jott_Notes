@@ -3,9 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Sp App/Jott_Notes/app/src/main/res/drawable/ic_menu_24.xml" value="0.3277777777777778" />
         <entry key="..\:/Sp App/Jott_Notes/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Sp App/Jott_Notes/app/src/main/res/layout/fragment_edit_notes.xml" value="0.1" />
-        <entry key="..\:/Sp App/Jott_Notes/app/src/main/res/layout/fragment_home.xml" value="0.19123606889564337" />
+        <entry key="..\:/Sp App/Jott_Notes/app/src/main/res/layout/fragment_home.xml" value="0.23124086947362107" />
         <entry key="..\:/Sp App/Jott_Notes/app/src/main/res/layout/fragment_notes_create.xml" value="0.1" />
         <entry key="..\:/Sp App/Jott_Notes/app/src/main/res/layout/fragment_notes_page_bottom_sheet.xml" value="0.3932291666666667" />
         <entry key="..\:/Sp App/Jott_Notes/app/src/main/res/layout/rvcard.xml" value="0.27445652173913043" />
