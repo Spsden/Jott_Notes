@@ -1,8 +1,10 @@
 package com.example.jott_notes.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jott_notes.databinding.RvcardBinding
@@ -13,6 +15,7 @@ import io.noties.markwon.Markwon
 import io.noties.markwon.MarkwonVisitor
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin
 import io.noties.markwon.ext.tasklist.TaskListPlugin
+import kotlinx.android.synthetic.main.rvcard.view.*
 import org.commonmark.node.SoftLineBreak
 
 
@@ -26,9 +29,15 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
     }
 
 
+
+
+
+
     inner class NotesViewHolder(val binding: RvcardBinding) : RecyclerView.ViewHolder(binding.root)
 
     {
+
+
 
 //        private val rvcardBinding = RvcardBinding.bind(itemView)
 
@@ -61,6 +70,17 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
         holder.binding.titleThumb.text = notesList[position].title
         holder.binding.noteDescThumb.text = notesList[position].notesdesc
 
+        if (notesList[position].color == null)
+        {
+            holder.binding.rvCard.strokeColor = Color.parseColor("#3B51E3")
+        }
+        else
+        {
+            holder.binding.rvCard.strokeColor = notesList[position].color
+
+        }
+
+
 //        getItemId(position).let {notesList
 //            holder.apply {
 //                rvCardParent.transitionName = "recyclerView_${notesList[position].id}"
@@ -85,7 +105,8 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
                     id = notesList[position].id,
                     title = notesList[position].title,
                     notesdesc = notesList[position].notesdesc,
-                    date = notesList[position].date
+                    date = notesList[position].date,
+                    color = notesList[position].color
                 )
             )
             Navigation.findNavController(it).navigate(action)
@@ -100,9 +121,7 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
 
     override fun getItemCount() = notesList.size
 
-//    fun deleteItem(index:Int){
-//        vie
-//    }
+
 
 
 
@@ -111,22 +130,3 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
 
 
 
-
-//when (notesList[position].prioritycolor) {
-//    "0" -> {
-//        holder.binding.rvCard.setCardBackgroundColor(Color.parseColor(R.color.float_cards.toString()))
-//
-//    }
-//
-//    "1" -> {
-//        holder.binding.rvCard.setCardBackgroundColor(Color.parseColor(R.color.holo_purple.toString()))
-//
-//    }
-//
-//    "2" -> holder.binding.rvCard.setCardBackgroundColor(Color.parseColor(R.color.orange.toString()))
-//
-//    "3" -> {
-//        holder.binding.rvCard.setCardBackgroundColor(Color.parseColor(R.color.colorgreen.toString()))
-//
-//    }
-//}

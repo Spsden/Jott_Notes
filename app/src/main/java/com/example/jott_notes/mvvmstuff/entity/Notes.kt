@@ -1,5 +1,6 @@
 package com.example.jott_notes.mvvmstuff.entity
 
+import android.graphics.drawable.Drawable
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -15,6 +16,7 @@ class Notes(
     var title: String,
     var notesdesc: String,
     var date:String,
+    var color: Int
     //var prioritycolor:String
 //    var image_path:String,
 //    var web_link:String

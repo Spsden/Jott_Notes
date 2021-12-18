@@ -191,7 +191,7 @@
                 app:spectrum_colors="@array/color_picker"
                 app:spectrum_autoPadding="true"
                 android:scrollbars="horizontal"
-                app:spectrum_columnCount="16">
+                app:spectrum_columnCount="17">
 
             </com.thebluealliance.spectrum.SpectrumPalette>
         </androidx.core.widget.NestedScrollView>

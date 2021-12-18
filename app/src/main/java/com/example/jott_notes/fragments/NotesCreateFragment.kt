@@ -5,8 +5,6 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +16,7 @@ import com.example.jott_notes.databinding.FragmentNotesCreateBinding
 import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.thebluealliance.spectrum.SpectrumPalette
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,7 +25,11 @@ class NotesCreateFragment : Fragment() {
 
     lateinit var binding: FragmentNotesCreateBinding
 
-    var priorityColor: String = "0"
+//    var priorityColor: String = "0"
+
+
+
+    private var color: Int = 0
 
 
     val viewModel: NotesViewModel by viewModels()
@@ -90,6 +93,8 @@ class NotesCreateFragment : Fragment() {
             Log.d("TAG", "FROM CREATE NOTES")
         }
 
+        color = resources.getColor(R.color.bg_sheet)
+
 
     }
 
@@ -102,6 +107,7 @@ class NotesCreateFragment : Fragment() {
 
             val notesTitle = binding.notesTitle.text.toString()
             val notesDesc = binding.notesDesc.getMD()
+            val colorhere = color
 
             val sdf = SimpleDateFormat("dd/M/yyy hh:mm:ss")
             val currentDate = sdf.format(Date())
@@ -112,6 +118,7 @@ class NotesCreateFragment : Fragment() {
                     title = notesTitle,
                     notesdesc = notesDesc,
                     date = currentDate,
+                    color = colorhere
                     //prioritycolor
                 )
 
@@ -145,50 +152,29 @@ class NotesCreateFragment : Fragment() {
             bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
             bottomSheetMoreOptions.show()
 
-//            val dark = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote0)
-//            val purple = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote1)
-//            val orange = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote2)
-//            val green = bottomSheetMoreOptions.findViewById<ImageView>(R.id.fNote3)
-//
-//            dark?.setOnClickListener {
-//                priorityColor = "0"
-//
-//                dark.setImageResource(R.drawable.ic_check_24)
-//                purple?.setImageResource(0)
-//                orange?.setImageResource(0)
-//                green?.setImageResource(0)
-//
-//            }
-//
-//            purple?.setOnClickListener {
-//                priorityColor = "1"
-//
-//                purple.setImageResource(R.drawable.ic_check_24)
-//                dark?.setImageResource(0)
-//                orange?.setImageResource(0)
-//                green?.setImageResource(0)
-//
-//            }
-//
-//            orange?.setOnClickListener {
-//                priorityColor = "2"
-//
-//                orange.setImageResource(R.drawable.ic_check_24)
-//                dark?.setImageResource(0)
-//                purple?.setImageResource(0)
-//                green?.setImageResource(0)
-//
-//            }
-//
-//            green?.setOnClickListener {
-//                priorityColor = "3"
-//
-//                green.setImageResource(R.drawable.ic_check_24)
-//                dark?.setImageResource(0)
-//                orange?.setImageResource(0)
-//                purple?.setImageResource(0)
-//
-//            }
+
+            val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
+
+            colorPick?.apply {
+                setSelectedColor(color)
+                setOnColorSelectedListener { value ->
+                    color = value
+                    binding.apply {
+                        noteContentFragmentParent.setBackgroundColor(color)
+                        bottomBar.setBackgroundColor(color)
+                        requireActivity().window.statusBarColor = color
+                        (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
+                            ColorDrawable(
+                                color
+                            )
+                        )
+
+                    }
+
+                }
+            }
+
+
 
 
         }

@@ -1,108 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:transitionName="image_big"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/notes_page"
+    </data>
+
+    <FrameLayout
+        android:id="@+id/editNotesFragmentParent"
         android:layout_width="match_parent"
+        android:transitionName="image_big"
         android:layout_height="match_parent"
-        android:background="@color/bg_sheet">
+        >
 
 
-        <EditText
-            android:id="@+id/notes_title"
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/notes_page"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_sheet"
+           >
+
+
+            <EditText
+                android:id="@+id/notes_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/notes_title_background"
+                android:ellipsize="end"
+                android:hint='Enter title'
+                android:maxLines="1"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/hint_text"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@id/notes_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="30dp"
+                android:background="@null"
+                android:ellipsize="end"
+                android:fontFamily="@font/josefinsanssemibold"
+                android:gravity="right"
+                android:hint="March 21, 1994"
+                android:inputType="date"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/hint_text"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/notes_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notes_title"
+
+
+                tools:ignore="TextViewEdits" />
+
+
+            <EditText
+                android:id="@+id/notes_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@null"
+                android:fontFamily="@font/josefinsansregular"
+                android:hint="@string/your_note_here"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="@color/hint_text"
+                android:textColorHint="@color/hint_text"
+                android:textSize="16sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/notes_title" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/UpdateNoteButtonFAB"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/notes_title_background"
-            android:ellipsize="end"
-            android:hint='Enter title'
-            android:maxLines="1"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/hint_text"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@id/notes_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="bottom|end"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/menu_and_accents"
+            android:src="@drawable/ic_check_24">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_marginRight="30dp"
-            android:background="@null"
-            android:ellipsize="end"
-            android:fontFamily="@font/josefinsanssemibold"
-            android:gravity="right"
-            android:hint="March 21, 1994"
-            android:inputType="date"
-            android:maxLines="1"
-            android:padding="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/hint_text"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@id/notes_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/notes_title"
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
-            tools:ignore="TextViewEdits" />
-
-
-        <EditText
-            android:id="@+id/notes_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
-            android:background="@null"
-            android:fontFamily="@font/josefinsansregular"
-            android:hint="@string/your_note_here"
-            android:inputType="textMultiLine"
-            android:padding="10dp"
-            android:textColor="@color/hint_text"
-            android:textColorHint="@color/hint_text"
-            android:textSize="16sp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/notes_title" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-
-        </LinearLayout>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/UpdateNoteButtonFAB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        android:backgroundTint="@color/menu_and_accents"
-        android:src="@drawable/ic_check_24">
-
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
-
-
-</FrameLayout>
+    </FrameLayout>
+</layout>

@@ -51,7 +51,8 @@
 
 
     <array name="color_picker">
-        <item>@color/white</item>
+        <item>@color/menu_and_accents</item>
+
         <item>@color/card_purple</item>
         <item>@color/card_yellow</item>
         <item>@color/card_red</item>

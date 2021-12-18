@@ -1,6 +1,8 @@
 package com.example.jott_notes.fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
@@ -9,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -18,6 +21,7 @@ import com.example.jott_notes.databinding.FragmentNotesCreateBinding
 import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.thebluealliance.spectrum.SpectrumPalette
 import kotlinx.android.synthetic.main.fragment_edit_notes.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,7 +30,9 @@ import java.util.*
 class EditNotesFragment : Fragment() {
 
     private val addednotes by navArgs<EditNotesFragmentArgs>()
-    var priorityColor: String = "0"
+    //var priorityColor: String = "0"
+
+    private var color : Int = 0
     private lateinit var tts : TextToSpeech
     private lateinit var binding: FragmentNotesCreateBinding
 
@@ -38,10 +44,10 @@ class EditNotesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
 
         }
-
 
     }
 
@@ -54,46 +60,18 @@ class EditNotesFragment : Fragment() {
 
 
 
+
+
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
         (activity as AppCompatActivity?)!!.supportActionBar?.title = "Edit Note"
 
 
 
+
+
+
         binding = FragmentNotesCreateBinding.inflate(layoutInflater,container,false)
         setHasOptionsMenu(true)
-
-
-//        val callback = object : OnBackPressedCallback(true){
-//            override fun handleOnBackPressed() {
-////                textToSpeech?.setOnClickListener {
-////                    tts = TextToSpeech(context?.applicationContext) {
-////                        if (tts.isSpeaking) {
-////                            tts.stop()
-////                            tts.shutdown()
-////
-////
-////                        }else
-////                        {
-////                            Toast.makeText(context,"jhfdh",Toast.LENGTH_SHORT).show()
-////                        }
-////
-////                    }
-////                }
-//                findNavController().popBackStack()
-//
-//                // if you want onBackPressed() to be called as normal afterwards
-//                if (isEnabled) {
-//                    isEnabled = false
-//                    requireActivity().onBackPressed()
-//                }
-//            }
-//
-//        }
-//
-//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
-
-
-
         return binding.root
 
 
@@ -107,6 +85,20 @@ class EditNotesFragment : Fragment() {
         binding.notesTitle.setText(addednotes.dataTransfer?.title)
         binding.notesDesc.setText(addednotes.dataTransfer?.notesdesc)
         binding.date.setText(addednotes.dataTransfer?.date)
+        addednotes.dataTransfer?.color?.let {
+            binding.noteContentFragmentParent.setBackgroundColor(
+                it
+            )
+
+        }
+        requireActivity().window.statusBarColor = color
+        (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
+            addednotes.dataTransfer?.let {
+                ColorDrawable(
+                    it.color
+                )
+            }
+        )
 
         binding.SaveNoteButtonFAB.setOnClickListener {
             updateNotes(it)
@@ -126,16 +118,27 @@ class EditNotesFragment : Fragment() {
             Log.d("TAG", "FROM EDIT NOTES")
         }
 
+        //binding.frameLayoutEditText.background = addednotes.dataTransfer?.color?.toDrawable()
+
+
+
+
+
+
+
+
 
 
     }
 
+
+
     private fun updateNotes(it: View?) {
         val notesTitle = binding.notesTitle.text.toString()
         val notesDesc = binding.notesDesc.getMD()
-
         val sdf = SimpleDateFormat("dd/M/yyy hh:mm:ss")
         val currentDate = sdf.format(Date())
+
 
         val data =
             Notes(
@@ -143,7 +146,8 @@ class EditNotesFragment : Fragment() {
                 title = notesTitle,
                 notesdesc = notesDesc,
                 date = currentDate.toString(),
-                //prioritycolor
+                color = color
+
             )
 
        Log.e("@@@@@","updateNotes: Title : $notesTitle SubTile : $notesDesc")
@@ -166,6 +170,7 @@ class EditNotesFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.More_Options) {
             val bottomSheetMoreOptions = BottomSheetDialog(requireContext(),R.style.BottomSheetDialogTheme)
@@ -175,6 +180,29 @@ class EditNotesFragment : Fragment() {
             val iconSwitch = bottomSheetMoreOptions.findViewById<SwitchCompat>(R.id.switch_button)
 
             val layut = bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
+
+
+            val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
+
+            colorPick?.apply {
+                setSelectedColor(color)
+                setOnColorSelectedListener { value ->
+                    color = value
+                    binding.apply {
+                        noteContentFragmentParent.setBackgroundColor(color)
+                        bottomBar.setBackgroundColor(color)
+                       // requireActivity().window.statusBarColor = color
+//                        (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
+//                            ColorDrawable(
+//                                ContextCompat.getColor(requireContext(), color)
+//                            )
+//                        )
+
+
+                    }
+
+                }
+            }
 
             iconSwitch?.setOnClickListener {
                 if (iconSwitch.isChecked){
@@ -218,6 +246,8 @@ class EditNotesFragment : Fragment() {
         }
 
     }
+
+
 
 //    private fun startingTextToSpeech() {
 //        Toast.makeText(context,"Text To Speech Is Not Running",Toast.LENGTH_SHORT)

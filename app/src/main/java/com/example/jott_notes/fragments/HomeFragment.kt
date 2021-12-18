@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -24,11 +23,9 @@ import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialElevationScale
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
@@ -36,6 +33,7 @@ class HomeFragment : Fragment() {
     val addednotes by navArgs<EditNotesFragmentArgs>()
 
     private lateinit var navController : NavController
+    //var defaultColor = requireContext().getColor(R.color.menu_and_accents)
 
     lateinit var binding: FragmentHomeBinding
     val viewModel: NotesViewModel by viewModels()
