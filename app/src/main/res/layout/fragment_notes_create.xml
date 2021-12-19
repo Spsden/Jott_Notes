@@ -15,70 +15,95 @@
         >
 
 
-<!--        <RelativeLayout-->
-<!--            android:id="@+id/toolbarFragmentInCreateNotes"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:background="@color/float_cards">-->
+        <RelativeLayout
+            android:id="@+id/toolbarInCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:background="@color/float_cards">
 
 
-<!--            <ImageView-->
-<!--                android:id="@+id/back_button_createFragment"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:layout_margin="15dp"-->
-<!--                android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--                android:clickable="true"-->
-<!--                android:focusable="true"-->
-<!--                android:paddingTop="5dp"-->
-<!--                android:paddingEnd="5dp"-->
-<!--                android:paddingBottom="5dp"-->
-<!--                android:src="@drawable/ic_back">-->
+            <ImageView
+                android:id="@+id/back_button_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_margin="15dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/ic_back">
 
-<!--            </ImageView>-->
+            </ImageView>
 
-<!--            <com.google.android.material.textview.MaterialTextView-->
-<!--                android:id="@+id/date"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_centerInParent="true"-->
-<!--                android:clickable="true"-->
-<!--                android:ellipsize="end"-->
-<!--                android:focusable="true"-->
-<!--                android:fontFamily="@font/josefinsansbold"-->
-<!--                android:paddingStart="13dp"-->
-<!--                android:paddingEnd="13dp"-->
-<!--                android:paddingBottom="5dp"-->
-<!--                android:textAlignment="center"-->
-<!--                android:textColor="@color/white"-->
-<!--                android:textSize="12sp"-->
-<!--                android:textStyle="bold">-->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:fontFamily="@font/josefinsansbold"
+                android:paddingStart="13dp"
+                android:paddingEnd="13dp"
+                android:text="Hey, Pal 😀 "
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold">
 
-<!--            </com.google.android.material.textview.MaterialTextView>-->
+            </com.google.android.material.textview.MaterialTextView>
 
-<!--            <ImageView-->
-<!--                android:id="@+id/More_Options"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignParentEnd="true"-->
-<!--                android:layout_centerVertical="true"-->
-<!--                android:layout_margin="15dp"-->
-<!--                android:background="?attr/selectableItemBackgroundBorderless"-->
-<!--                android:clickable="true"-->
-<!--                android:focusable="true"-->
-<!--                android:paddingTop="5dp"-->
-<!--                android:paddingEnd="5dp"-->
-<!--                android:paddingBottom="5dp"-->
-<!--                android:src="@drawable/ic_menu_24">-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp">
 
-<!--            </ImageView>-->
+                <ImageView
+                    android:id="@+id/share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:src="@drawable/ic_share_24">
+
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/More_Options"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingStart="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:src="@drawable/ic_menu_24">
+
+                </ImageView>
 
 
-<!--        </RelativeLayout>-->
+            </LinearLayout>
+
+
+        </RelativeLayout>
 
 
         <FrameLayout
+            android:layout_below="@id/toolbarInCreate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/bottomBar"
@@ -115,24 +140,24 @@
 
 
 
-                    <TextView
-                        android:id="@+id/date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:layout_marginEnd="30dp"
-                        android:background="@null"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/josefinsanssemibold"
-                        android:gravity="end"
-                        android:inputType="date"
-                        android:maxLines="1"
-                        android:padding="10dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/hint_text"
-                        android:textSize="14sp"
+<!--                    <TextView-->
+<!--                        android:id="@+id/date"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="7dp"-->
+<!--                        android:layout_marginEnd="30dp"-->
+<!--                        android:background="@null"-->
+<!--                        android:ellipsize="end"-->
+<!--                        android:fontFamily="@font/josefinsanssemibold"-->
+<!--                        android:gravity="end"-->
+<!--                        android:inputType="date"-->
+<!--                        android:maxLines="1"-->
+<!--                        android:padding="10dp"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textColorHint="@color/hint_text"-->
+<!--                        android:textSize="14sp"-->
 
-                        />
+<!--                        />-->
 
                     <ImageView
                         android:id="@+id/imagePage"
@@ -174,6 +199,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
                 android:layout_margin="15dp"
+                app:borderWidth="0dp"
                 android:backgroundTint="@color/menu_and_accents"
                 android:src="@drawable/ic_check_24">
 
@@ -196,9 +222,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-
                 android:elevation="5dp"
-                android:padding="0dp">
+                android:padding="5dp">
 
             </com.yahiaangelo.markdownedittext.MarkdownStylesBar>
 

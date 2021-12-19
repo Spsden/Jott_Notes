@@ -72,24 +72,12 @@ class EditNotesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-
-
-
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
         (activity as AppCompatActivity?)!!.supportActionBar?.title = "Edit Note"
 
-
-
-
-
-
         binding = FragmentNotesCreateBinding.inflate(layoutInflater,container,false)
-        setHasOptionsMenu(true)
+        //setHasOptionsMenu(true)
         return binding.root
-
-
-
 
     }
 
@@ -98,21 +86,23 @@ class EditNotesFragment : Fragment() {
 
         binding.notesTitle.setText(addednotes.dataTransfer?.title)
         binding.notesDesc.setText(addednotes.dataTransfer?.notesdesc)
-        binding.date.setText(addednotes.dataTransfer?.date)
+        binding.date.setText("Modified On\n${addednotes.dataTransfer?.date}")
         addednotes.dataTransfer?.color?.let {
             binding.noteContentFragmentParent.setBackgroundColor(
                 it
             )
 
         }
-        requireActivity().window.statusBarColor = color
-        (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
-            addednotes.dataTransfer?.let {
-                ColorDrawable(
-                    it.color
-                )
-            }
-        )
+//        requireActivity().window.statusBarColor = color
+//        (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
+//            addednotes.dataTransfer?.let {
+//                ColorDrawable(
+//                    it.color
+//                )
+//            }
+//        )
+        addednotes.dataTransfer?.color?.let { binding.toolbarInCreate.setBackgroundColor(it) }
+
 
         binding.SaveNoteButtonFAB.setOnClickListener {
             updateNotes(it)
@@ -139,17 +129,89 @@ class EditNotesFragment : Fragment() {
 
         //binding.frameLayoutEditText.background = addednotes.dataTransfer?.color?.toDrawable()
 
+        val bottomSheet = binding.MoreOptions
+        val shareButton = binding.share
+
+        bottomSheet.setOnClickListener {
+            bottomSheetFunctions()
+        }
+
+        shareButton.setOnClickListener {
+            shareFunction()
 
 
 
-
-
+        }
 
 
 
 
     }
 
+    private fun shareFunction() {
+        val share = Intent()
+        share.action = Intent.ACTION_SEND
+        share.type = "text/plain"
+        share.putExtra(Intent.EXTRA_TEXT,binding.notesDesc.getMD())
+        context?.startActivity(Intent.createChooser(share,getString(R.string.app_name)))
+    }
+
+    private fun bottomSheetFunctions() {
+        val bottomSheetMoreOptions = BottomSheetDialog(requireContext(),R.style.BottomSheetDialogTheme)
+        bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
+        bottomSheetMoreOptions.show()
+
+        val iconSwitch = bottomSheetMoreOptions.findViewById<SwitchCompat>(R.id.switch_button)
+
+        bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
+//            iconSwitch?.setOnClickListener {
+//                tts = TextToSpeech(context?.applicationContext){
+//                    tts.setSpeechRate(0.7f)
+//
+//                }
+//            }
+
+
+        val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
+//
+//            bottomSheetMoreOptions.setOnCancelListener {
+//                tts.stop()
+//            }
+//            bottomSheetMoreOptions.setOnDismissListener {
+//                stopTextToSpeech()
+//            }
+
+        colorPick?.apply {
+            setSelectedColor(color)
+            setOnColorSelectedListener { value ->
+                color = value
+                binding.apply {
+                    noteContentFragmentParent.setBackgroundColor(color)
+                    bottomBar.setBackgroundColor(color)
+                }
+
+            }
+        }
+
+        iconSwitch?.setOnClickListener {
+
+
+
+            if (iconSwitch.isChecked){
+                tts = TextToSpeech(context?.applicationContext) {
+                    if (it == TextToSpeech.SUCCESS) {
+                        tts.language = Locale.getDefault()
+                        tts.setSpeechRate(0.70f)
+                        tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_ADD, null)
+                    }
+                }
+            }
+            else{
+                stopTextToSpeech()
+
+            }
+        }
+    }
 
 
     private fun updateNotes(it: View?) {
@@ -183,94 +245,94 @@ class EditNotesFragment : Fragment() {
     }
 
 
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.more, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.More_Options) {
-            val bottomSheetMoreOptions = BottomSheetDialog(requireContext(),R.style.BottomSheetDialogTheme)
-            bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
-            bottomSheetMoreOptions.show()
-
-            val iconSwitch = bottomSheetMoreOptions.findViewById<SwitchCompat>(R.id.switch_button)
-
-            bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
-//            iconSwitch?.setOnClickListener {
-//                tts = TextToSpeech(context?.applicationContext){
-//                    tts.setSpeechRate(0.7f)
+//
+//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+//        inflater.inflate(R.menu.more, menu)
+//        super.onCreateOptionsMenu(menu, inflater)
+//    }
+//
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if (item.itemId == R.id.More_Options) {
+//            val bottomSheetMoreOptions = BottomSheetDialog(requireContext(),R.style.BottomSheetDialogTheme)
+//            bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
+//            bottomSheetMoreOptions.show()
+//
+//            val iconSwitch = bottomSheetMoreOptions.findViewById<SwitchCompat>(R.id.switch_button)
+//
+//            bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
+////            iconSwitch?.setOnClickListener {
+////                tts = TextToSpeech(context?.applicationContext){
+////                    tts.setSpeechRate(0.7f)
+////
+////                }
+////            }
+//
+//
+//            val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
+////
+////            bottomSheetMoreOptions.setOnCancelListener {
+////                tts.stop()
+////            }
+////            bottomSheetMoreOptions.setOnDismissListener {
+////                stopTextToSpeech()
+////            }
+//
+//            colorPick?.apply {
+//                setSelectedColor(color)
+//                setOnColorSelectedListener { value ->
+//                    color = value
+//                    binding.apply {
+//                        noteContentFragmentParent.setBackgroundColor(color)
+//                        bottomBar.setBackgroundColor(color)
+//                       // requireActivity().window.statusBarColor = color
+////                        (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
+////                            ColorDrawable(
+////                                ContextCompat.getColor(requireContext(), color)
+////                            )
+////                        )
+//
+//
+//                    }
 //
 //                }
 //            }
-
-
-            val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
 //
-//            bottomSheetMoreOptions.setOnCancelListener {
-//                tts.stop()
+//            iconSwitch?.setOnClickListener {
+//
+//
+//
+//                if (iconSwitch.isChecked){
+//                    tts = TextToSpeech(context?.applicationContext) {
+//                        if (it == TextToSpeech.SUCCESS) {
+//                            tts.language = Locale.getDefault()
+//                            tts.setSpeechRate(0.70f)
+//                            tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_ADD, null)
+//                        }
+//                    }
+//                }
+//                else{
+//                    stopTextToSpeech()
+//
+//                }
 //            }
-//            bottomSheetMoreOptions.setOnDismissListener {
-//                stopTextToSpeech()
-//            }
-
-            colorPick?.apply {
-                setSelectedColor(color)
-                setOnColorSelectedListener { value ->
-                    color = value
-                    binding.apply {
-                        noteContentFragmentParent.setBackgroundColor(color)
-                        bottomBar.setBackgroundColor(color)
-                       // requireActivity().window.statusBarColor = color
-//                        (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
-//                            ColorDrawable(
-//                                ContextCompat.getColor(requireContext(), color)
-//                            )
-//                        )
-
-
-                    }
-
-                }
-            }
-
-            iconSwitch?.setOnClickListener {
-
-
-
-                if (iconSwitch.isChecked){
-                    tts = TextToSpeech(context?.applicationContext) {
-                        if (it == TextToSpeech.SUCCESS) {
-                            tts.language = Locale.getDefault()
-                            tts.setSpeechRate(0.70f)
-                            tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_ADD, null)
-                        }
-                    }
-                }
-                else{
-                    stopTextToSpeech()
-
-                }
-            }
-
-        }
-
-        if (item.itemId == R.id.shareButton) {
-            val share = Intent()
-            share.action = Intent.ACTION_SEND
-            share.type = "text/plain"
-            share.putExtra(Intent.EXTRA_TEXT,binding.notesDesc.getMD())
-            context?.startActivity(Intent.createChooser(share,getString(R.string.app_name)))
-        }
-
-
-        return super.onOptionsItemSelected(item)
-    }
+//
+//        }
+//
+//        if (item.itemId == R.id.shareButton) {
+//            val share = Intent()
+//            share.action = Intent.ACTION_SEND
+//            share.type = "text/plain"
+//            share.putExtra(Intent.EXTRA_TEXT,binding.notesDesc.getMD())
+//            context?.startActivity(Intent.createChooser(share,getString(R.string.app_name)))
+//        }
+//
+//
+//        return super.onOptionsItemSelected(item)
+//    }
 
     private fun stopTextToSpeech() {
-        tts = TextToSpeech(context?.applicationContext){
+
             Toast.makeText(context,"Reader Stopped",Toast.LENGTH_SHORT).show()
             if (tts.isSpeaking){
                 tts.stop()
@@ -281,48 +343,10 @@ class EditNotesFragment : Fragment() {
                 Toast.makeText(context,"Reader Never Started",Toast.LENGTH_SHORT).show()
             }
 
-        }
+
 
 
     }
-
-//    private fun textToSpeechall(){
-//        tts = TextToSpeech(context?.applicationContext){
-//            if (tts.isSpeaking){
-//                tts.stop()
-//                tts.shutdown()
-//            }else if (it == TextToSpeech.SUCCESS){
-//                tts.language = Locale.getDefault()
-//                tts.setSpeechRate(0.70f)
-//                tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_ADD, null)
-//
-//            }
-//            else{
-//                tts.shutdown()
-//            }
-//
-//        }
-//    }
-
-
-
-//    private fun startingTextToSpeech() {
-//        Toast.makeText(context,"Text To Speech Is Not Running",Toast.LENGTH_SHORT)
-//
-//        tts = TextToSpeech(context?.applicationContext){
-//                    if (it == TextToSpeech.SUCCESS){
-//                        tts.language = Locale.getDefault()
-//                        tts.setSpeechRate(1.0f)
-//                        tts.speak(notes_desc.text.toString(),TextToSpeech.QUEUE_ADD,null)
-//                    }
-//                }
-//
-//    }
-
-
-
-
-
 
 
 

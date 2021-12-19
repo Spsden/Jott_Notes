@@ -29,6 +29,12 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
+import androidx.core.content.res.ResourcesCompat
+
+import android.graphics.Typeface
+
+
+
 
 class HomeFragment : Fragment() {
 
@@ -64,6 +70,15 @@ class HomeFragment : Fragment() {
             collapsingToolbar.title = "Jott Notes"
 
         }
+
+        val typeface = ResourcesCompat.getFont(requireContext(), R.font.josefinsansbold)
+        collapsingToolbarLayout?.setCollapsedTitleTypeface(typeface)
+        collapsingToolbarLayout?.setExpandedTitleTypeface(typeface)
+
+
+//        collapsingToolbarLayout.apply {
+//            expandedTitleTypeface(R.style.)
+//        }
     }
 
     override fun onCreateView(

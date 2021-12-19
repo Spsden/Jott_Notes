@@ -133,6 +133,12 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.factor:bouncy:1.61'
+
+
+
+
 
 
 }

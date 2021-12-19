@@ -8,13 +8,13 @@
 
 
     <FrameLayout
+        android:id="@+id/parentActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/parentActivity"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <fragment
             android:id="@+id/fragmentContainerView"
@@ -27,13 +27,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/nav_graph" />
-
-
-
     </FrameLayout>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

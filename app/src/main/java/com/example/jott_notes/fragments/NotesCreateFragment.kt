@@ -1,9 +1,10 @@
 package com.example.jott_notes.fragments
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -16,13 +17,14 @@ import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.thebluealliance.spectrum.SpectrumPalette
+import kotlinx.android.synthetic.main.fragment_notes_create.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class NotesCreateFragment : Fragment() {
 
-    lateinit var binding: FragmentNotesCreateBinding
+    private lateinit var binding: FragmentNotesCreateBinding
     private var color: Int = 0
     val viewModel: NotesViewModel by viewModels()
     private var READ_STORAGE_PERM = 123
@@ -49,8 +51,8 @@ class NotesCreateFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-        (activity as AppCompatActivity?)!!.supportActionBar?.title = "Add Note"
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+       // (activity as AppCompatActivity?)!!.supportActionBar?.title = "Add Note"
 
 
         binding = FragmentNotesCreateBinding.inflate(
@@ -89,6 +91,58 @@ class NotesCreateFragment : Fragment() {
 
         color = resources.getColor(R.color.bg_sheet)
 
+        val bottomSheet = binding.MoreOptions
+        binding.share
+
+
+        bottomSheet.setOnClickListener {
+            bottomSheetMenuOptions()
+        }
+
+//        shareButton.setOnClickListener {
+//            shareFunc
+//        }
+
+//        markwon = Markwon.builder(requireContext()).usePlugin(AbstractMarkwonPlugin() {
+//            @Override
+//            con
+//        })
+
+
+
+
+    }
+
+    private fun bottomSheetMenuOptions() {
+
+        val bottomSheetMoreOptions =
+            BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
+        bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
+        bottomSheetMoreOptions.show()
+
+
+        val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
+
+        colorPick?.apply {
+            setSelectedColor(color)
+            setOnColorSelectedListener { value ->
+                color = value
+                binding.apply {
+                    noteContentFragmentParent.setBackgroundColor(color)
+                    bottomBar.setBackgroundColor(color)
+                    style_bar.setBackgroundColor(color)
+                    requireActivity().window.statusBarColor = color
+//                    (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
+//                        ColorDrawable(
+//                            color
+//                        )
+//                    )
+
+                }
+
+            }
+        }
+
 
     }
 
@@ -113,7 +167,6 @@ class NotesCreateFragment : Fragment() {
                     notesdesc = notesDesc,
                     date = currentDate,
                     color = colorhere
-                    //prioritycolor
                 )
 
             viewModel.addNotes(data)
@@ -134,66 +187,7 @@ class NotesCreateFragment : Fragment() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.more, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.More_Options) {
-            val bottomSheetMoreOptions =
-                BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
-            bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
-            bottomSheetMoreOptions.show()
-
-
-            val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
-
-            colorPick?.apply {
-                setSelectedColor(color)
-                setOnColorSelectedListener { value ->
-                    color = value
-                    binding.apply {
-                        noteContentFragmentParent.setBackgroundColor(color)
-                        bottomBar.setBackgroundColor(color)
-                        requireActivity().window.statusBarColor = color
-                        (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
-                            ColorDrawable(
-                                color
-                            )
-                        )
-
-                    }
-
-                }
-            }
-
-
-
-
-        }
-//        if (item.itemId == R.id.Delete) {
-//            val bottomSheetDelete =
-//                BottomSheetDialog(requireContext(), R.style.BottomSheetDialogTheme)
-//            bottomSheetDelete.setContentView(R.layout.fragment_delete_bottom_sheet)
-//            bottomSheetDelete.show()
-//
-//            val yesDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteYes)
-//            val noDelete = bottomSheetDelete.findViewById<TextView>(R.id.DeleteNo)
-//
-//            yesDelete?.setOnClickListener {
-//                //viewModel.deleteNotes()
-//
-//            }
-//            noDelete?.setOnClickListener {
-//                bottomSheetDelete.dismiss()
-//
-//            }
-//
-//        }
-
-        return super.onOptionsItemSelected(item)
-    }
 
 
     companion object {
