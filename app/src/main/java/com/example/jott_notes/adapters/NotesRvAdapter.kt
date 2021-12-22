@@ -2,25 +2,21 @@ package com.example.jott_notes.adapters
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.toColor
-import androidx.core.graphics.toColorLong
+import androidx.core.net.toUri
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jott_notes.databinding.RvcardBinding
 import com.example.jott_notes.fragments.HomeFragmentDirections
 import com.example.jott_notes.mvvmstuff.entity.Notes
-import com.google.android.material.card.MaterialCardView
 import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.Markwon
 import io.noties.markwon.MarkwonVisitor
 import io.noties.markwon.ext.strikethrough.StrikethroughPlugin
 import io.noties.markwon.ext.tasklist.TaskListPlugin
-import kotlinx.android.synthetic.main.rvcard.view.*
 import org.commonmark.node.SoftLineBreak
 
 
@@ -73,7 +69,9 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         holder.binding.titleThumb.text = notesList[position].title
-        holder.binding.noteDescThumb.text = notesList[position].notesdesc
+        //holder.binding.noteDescThumb.text = notesList[position].notesdesc
+        val notesDescription = holder.binding.noteDescThumb
+        holder.markWon.setMarkdown(notesDescription,notesList[position].notesdesc)
 
         holder.binding.rvCard.strokeColor = notesList[position].color
         holder.binding.rvCard.transitionName = "recyclerView_${notesList[position].id}"
@@ -82,6 +80,19 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
         var colorInt = notesList[position].color
         var colorState = ColorStateList.valueOf(colorInt)
         holder.binding.rvCard.rippleColor = colorState
+
+
+
+        if (notesList[position].image != "")
+        {
+            //imagePath = addednotes.dataTransfer!!.image
+            holder.binding.imageviewinRvcard.setImageURI(notesList[position].image.toUri())
+            holder.binding.imageviewinRvcard.visibility = View.VISIBLE
+
+        }else{
+            holder.binding.imageviewinRvcard.visibility = View.GONE
+
+        }
 
 
 
@@ -102,7 +113,26 @@ class NotesRvAdapter(val requireContext: Context, var notesList: List<Notes>) :
                     title = notesList[position].title,
                     notesdesc = notesList[position].notesdesc,
                     date = notesList[position].date,
-                    color = notesList[position].color
+                    color = notesList[position].color,
+                    image = notesList[position].image
+                )
+            )
+            val extras = FragmentNavigatorExtras(rvCardNew to "recyclerView_${notesList[position].id}")
+
+
+            Navigation.findNavController(it).navigate(action,extras)
+
+        }
+
+        notesDescription.setOnClickListener{
+            val action = HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(
+                dataTransfer = Notes(
+                    id = notesList[position].id,
+                    title = notesList[position].title,
+                    notesdesc = notesList[position].notesdesc,
+                    date = notesList[position].date,
+                    color = notesList[position].color,
+                    image = notesList[position].image
                 )
             )
             val extras = FragmentNavigatorExtras(rvCardNew to "recyclerView_${notesList[position].id}")

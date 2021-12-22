@@ -55,6 +55,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageviewinRvcard"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:cropShape="oval"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_gravity="right">
+                </de.hdodenhof.circleimageview.CircleImageView>
+
                 <TextView
                     android:id="@+id/note_desc_thumb"
                     android:layout_width="match_parent"

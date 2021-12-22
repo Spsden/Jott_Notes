@@ -1,10 +1,16 @@
 package com.example.jott_notes.fragments
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -17,18 +23,24 @@ import com.example.jott_notes.mvvmstuff.Viewmodel.NotesViewModel
 import com.example.jott_notes.mvvmstuff.entity.Notes
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.thebluealliance.spectrum.SpectrumPalette
+import kotlinx.android.synthetic.main.fragment_notes_create.*
 import kotlinx.android.synthetic.main.fragment_notes_create.view.*
+import pub.devrel.easypermissions.AppSettingsDialog
+import pub.devrel.easypermissions.EasyPermissions
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class NotesCreateFragment : Fragment() {
+class NotesCreateFragment : Fragment(), EasyPermissions.PermissionCallbacks,
+    EasyPermissions.RationaleCallbacks {
 
     private lateinit var binding: FragmentNotesCreateBinding
     private var color: Int = 0
-    val viewModel: NotesViewModel by viewModels()
+    private val viewModel: NotesViewModel by viewModels()
     private var READ_STORAGE_PERM = 123
-    private var WRITE_STORAGE_PERM = 123
+    private var REQUEST_CODE_IMAGE = 456
+    private var imagePath = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +49,7 @@ class NotesCreateFragment : Fragment() {
 
         }
 
-        val onBackPressedCallback = object : OnBackPressedCallback(true){
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
 //                tts.stop()
 //                tts.shutdown()
@@ -52,7 +64,7 @@ class NotesCreateFragment : Fragment() {
     ): View {
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-       // (activity as AppCompatActivity?)!!.supportActionBar?.title = "Add Note"
+        // (activity as AppCompatActivity?)!!.supportActionBar?.title = "Add Note"
 
 
         binding = FragmentNotesCreateBinding.inflate(
@@ -72,7 +84,7 @@ class NotesCreateFragment : Fragment() {
 
         binding.SaveNoteButtonFAB.setOnClickListener {
 
-                createNotes(it)
+            createNotes(it)
 
         }
 
@@ -94,19 +106,14 @@ class NotesCreateFragment : Fragment() {
         val bottomSheet = binding.MoreOptions
         binding.share
 
+        binding.backButtonCreate.setOnClickListener {
+            Navigation.findNavController(view).popBackStack()
+        }
+
 
         bottomSheet.setOnClickListener {
             bottomSheetMenuOptions()
         }
-
-//        shareButton.setOnClickListener {
-//            shareFunc
-//        }
-
-//        markwon = Markwon.builder(requireContext()).usePlugin(AbstractMarkwonPlugin() {
-//            @Override
-//            con
-//        })
 
 
 
@@ -132,15 +139,15 @@ class NotesCreateFragment : Fragment() {
                     bottomBar.setBackgroundColor(color)
                     style_bar.setBackgroundColor(color)
                     requireActivity().window.statusBarColor = color
-//                    (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
-//                        ColorDrawable(
-//                            color
-//                        )
-//                    )
-
                 }
 
             }
+        }
+
+        val addImage = bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.Add_Image)
+        addImage?.setOnClickListener {
+            readStorageTask()
+            bottomSheetMoreOptions.dismiss()
         }
 
 
@@ -150,8 +157,7 @@ class NotesCreateFragment : Fragment() {
 
         if (binding.notesTitle.text.isNullOrEmpty()) {
             Toast.makeText(context, "Atleast Title Required", Toast.LENGTH_SHORT).show()
-        }
-        else{
+        } else {
 
             val notesTitle = binding.notesTitle.text.toString()
             val notesDesc = binding.notesDesc.getMD()
@@ -166,7 +172,9 @@ class NotesCreateFragment : Fragment() {
                     title = notesTitle,
                     notesdesc = notesDesc,
                     date = currentDate,
-                    color = colorhere
+                    color = colorhere,
+                    image = imagePath
+
                 )
 
             viewModel.addNotes(data)
@@ -177,28 +185,141 @@ class NotesCreateFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
 
-            Navigation.findNavController(it!!).navigate(R.id.action_notesCreateFragment_to_homeFragment)
+            Navigation.findNavController(it!!)
+                .navigate(R.id.action_notesCreateFragment_to_homeFragment)
 
         }
 
-
-
-
     }
-
-
-
 
 
     companion object {
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             NotesCreateFragment().apply {
                 arguments = Bundle().apply {
 
                 }
             }
+    }
+
+    private fun hasReadStoragePermission(): Boolean {
+        return EasyPermissions.hasPermissions(
+            requireContext(),
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+    }
+
+//    private fun hasWriteStoragePermission():Boolean{
+//        return EasyPermissions.hasPermissions(requireContext(),android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//    }
+
+    private fun readStorageTask() {
+        if (hasReadStoragePermission()) {
+
+            pickImage()
+            Toast.makeText(requireContext(), "Permission Granted, Thank You!", Toast.LENGTH_SHORT)
+                .show()
+
+
+        } else {
+            EasyPermissions.requestPermissions(
+                requireActivity(),
+                "Jott Notes needs storage permission",
+                READ_STORAGE_PERM,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+
+            )
+        }
+
+    }
+
+    private fun pickImage() {
+
+
+        var intent = Intent()
+        intent.type = "image/*"
+        intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+
+//        var intent = Intent()
+//        intent.setType("image/*")
+//        intent.setAction(Intent.ACTION_GET_CONTENT)
+        startActivityForResult(Intent.createChooser(intent, "Image"), REQUEST_CODE_IMAGE)
+    }
+
+    private fun getUriOfImage(contentUri: Uri): String? {
+        var filePath: String? = null
+        var cursor = requireActivity().contentResolver.query(contentUri, null, null, null, null)
+        if (cursor == null){
+            filePath = contentUri.path
+        }else{
+            cursor.moveToFirst()
+            var index = cursor.getColumnIndex("_data")
+            filePath= cursor.getString(index)
+            cursor.close()
+        }
+        return filePath
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_IMAGE && resultCode == RESULT_OK) {
+            if (data != null) {
+                val selectedImageUrl = data.data
+                if (selectedImageUrl != null) {
+                    try {
+
+                        val inputStream =
+                            requireActivity().contentResolver.openInputStream(selectedImageUrl)
+                        val bitmap = BitmapFactory.decodeStream(inputStream)
+                        imagePage.setImageBitmap(bitmap)
+                        imagePage.visibility = View.VISIBLE
+                        imagePath = getUriOfImage(selectedImageUrl)!!
+
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            }
+
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        EasyPermissions.onRequestPermissionsResult(
+            requestCode,
+            permissions,
+            grantResults,
+            requireActivity()
+        )
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(requireActivity(), perms)) {
+            AppSettingsDialog.Builder(requireActivity()).build().show()
+        }
+    }
+
+    override fun onRationaleAccepted(requestCode: Int) {
+
+    }
+
+    override fun onRationaleDenied(requestCode: Int) {
+
     }
 
 

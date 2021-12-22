@@ -1,19 +1,27 @@
 package com.example.jott_notes.fragments
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.speech.tts.TextToSpeech
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.jott_notes.R
@@ -24,11 +32,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.transition.MaterialContainerTransform
 import com.thebluealliance.spectrum.SpectrumPalette
 import kotlinx.android.synthetic.main.fragment_edit_notes.*
+import kotlinx.android.synthetic.main.fragment_edit_notes.notes_desc
+import kotlinx.android.synthetic.main.fragment_notes_create.*
+import pub.devrel.easypermissions.AppSettingsDialog
+import pub.devrel.easypermissions.EasyPermissions
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class EditNotesFragment : Fragment() {
+class EditNotesFragment : Fragment(),EasyPermissions.PermissionCallbacks,
+    EasyPermissions.RationaleCallbacks  {
 
     private val addednotes by navArgs<EditNotesFragmentArgs>()
     //var priorityColor: String = "0"
@@ -36,12 +49,10 @@ class EditNotesFragment : Fragment() {
     private var color : Int = 0
     private lateinit var tts : TextToSpeech
     private lateinit var binding: FragmentNotesCreateBinding
-
-
+    private var READ_STORAGE_PERM = 123
+    private var REQUEST_CODE_IMAGE = 456
+    private var imagePath = ""
     private val viewModel: NotesViewModel by viewModels()
-
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +65,6 @@ class EditNotesFragment : Fragment() {
             isElevationShadowEnabled = false
             fadeMode = MaterialContainerTransform.FADE_MODE_CROSS
             duration = 300L
-            //excludeTarget(toolbar,true)
         }
         sharedElementEnterTransition = animation
         sharedElementReturnTransition = animation
@@ -84,9 +94,29 @@ class EditNotesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //val uri = Uri.parse(imagePath)
+
+
+        //val imageView: ImageView = view.findViewById<ImageView>(R.id.imagePage2)!!
+
         binding.notesTitle.setText(addednotes.dataTransfer?.title)
-        binding.notesDesc.setText(addednotes.dataTransfer?.notesdesc)
+        addednotes.dataTransfer?.notesdesc?.let { binding.notesDesc.renderMD(it) }
         binding.date.setText("Modified On\n${addednotes.dataTransfer?.date}")
+
+
+
+        if (addednotes.dataTransfer?.image != null && addednotes.dataTransfer?.image != "")
+        {
+            //imagePath = addednotes.dataTransfer!!.image
+            binding.imagePage.setImageURI(addednotes.dataTransfer!!.image.toUri())
+            binding.imagePage.visibility = View.VISIBLE
+
+        }else{
+            binding.imagePage.visibility = View.GONE
+
+        }
+
+
         addednotes.dataTransfer?.color?.let {
             binding.noteContentFragmentParent.setBackgroundColor(
                 it
@@ -132,6 +162,10 @@ class EditNotesFragment : Fragment() {
         val bottomSheet = binding.MoreOptions
         val shareButton = binding.share
 
+        binding.backButtonCreate.setOnClickListener {
+            Navigation.findNavController(view).popBackStack()
+        }
+
         bottomSheet.setOnClickListener {
             bottomSheetFunctions()
         }
@@ -164,22 +198,9 @@ class EditNotesFragment : Fragment() {
         val iconSwitch = bottomSheetMoreOptions.findViewById<SwitchCompat>(R.id.switch_button)
 
         bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
-//            iconSwitch?.setOnClickListener {
-//                tts = TextToSpeech(context?.applicationContext){
-//                    tts.setSpeechRate(0.7f)
-//
-//                }
-//            }
 
 
         val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
-//
-//            bottomSheetMoreOptions.setOnCancelListener {
-//                tts.stop()
-//            }
-//            bottomSheetMoreOptions.setOnDismissListener {
-//                stopTextToSpeech()
-//            }
 
         colorPick?.apply {
             setSelectedColor(color)
@@ -211,6 +232,12 @@ class EditNotesFragment : Fragment() {
 
             }
         }
+
+        val addImage = bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.Add_Image)
+        addImage?.setOnClickListener {
+            readStorageTask()
+            bottomSheetMoreOptions.dismiss()
+        }
     }
 
 
@@ -219,6 +246,7 @@ class EditNotesFragment : Fragment() {
         val notesDesc = binding.notesDesc.getMD()
         val sdf = SimpleDateFormat("dd/M/yyy hh:mm:ss")
         val currentDate = sdf.format(Date())
+       // val imagenew = getUriOfImage(binding.im)
 
 
         val data =
@@ -227,7 +255,8 @@ class EditNotesFragment : Fragment() {
                 title = notesTitle,
                 notesdesc = notesDesc,
                 date = currentDate.toString(),
-                color = color
+                color = color,
+                image = imagePath
 
             )
 
@@ -245,91 +274,7 @@ class EditNotesFragment : Fragment() {
     }
 
 
-//
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.more, menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
-//
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if (item.itemId == R.id.More_Options) {
-//            val bottomSheetMoreOptions = BottomSheetDialog(requireContext(),R.style.BottomSheetDialogTheme)
-//            bottomSheetMoreOptions.setContentView(R.layout.fragment_notes_page_bottom_sheet)
-//            bottomSheetMoreOptions.show()
-//
-//            val iconSwitch = bottomSheetMoreOptions.findViewById<SwitchCompat>(R.id.switch_button)
-//
-//            bottomSheetMoreOptions.findViewById<LinearLayout>(R.id.textToSpeech)
-////            iconSwitch?.setOnClickListener {
-////                tts = TextToSpeech(context?.applicationContext){
-////                    tts.setSpeechRate(0.7f)
-////
-////                }
-////            }
-//
-//
-//            val colorPick = bottomSheetMoreOptions.findViewById<SpectrumPalette>(R.id.colorPicker)
-////
-////            bottomSheetMoreOptions.setOnCancelListener {
-////                tts.stop()
-////            }
-////            bottomSheetMoreOptions.setOnDismissListener {
-////                stopTextToSpeech()
-////            }
-//
-//            colorPick?.apply {
-//                setSelectedColor(color)
-//                setOnColorSelectedListener { value ->
-//                    color = value
-//                    binding.apply {
-//                        noteContentFragmentParent.setBackgroundColor(color)
-//                        bottomBar.setBackgroundColor(color)
-//                       // requireActivity().window.statusBarColor = color
-////                        (activity as AppCompatActivity?)!!.supportActionBar?.setBackgroundDrawable(
-////                            ColorDrawable(
-////                                ContextCompat.getColor(requireContext(), color)
-////                            )
-////                        )
-//
-//
-//                    }
-//
-//                }
-//            }
-//
-//            iconSwitch?.setOnClickListener {
-//
-//
-//
-//                if (iconSwitch.isChecked){
-//                    tts = TextToSpeech(context?.applicationContext) {
-//                        if (it == TextToSpeech.SUCCESS) {
-//                            tts.language = Locale.getDefault()
-//                            tts.setSpeechRate(0.70f)
-//                            tts.speak(notes_desc.text.toString(), TextToSpeech.QUEUE_ADD, null)
-//                        }
-//                    }
-//                }
-//                else{
-//                    stopTextToSpeech()
-//
-//                }
-//            }
-//
-//        }
-//
-//        if (item.itemId == R.id.shareButton) {
-//            val share = Intent()
-//            share.action = Intent.ACTION_SEND
-//            share.type = "text/plain"
-//            share.putExtra(Intent.EXTRA_TEXT,binding.notesDesc.getMD())
-//            context?.startActivity(Intent.createChooser(share,getString(R.string.app_name)))
-//        }
-//
-//
-//        return super.onOptionsItemSelected(item)
-//    }
+
 
     private fun stopTextToSpeech() {
 
@@ -343,8 +288,126 @@ class EditNotesFragment : Fragment() {
                 Toast.makeText(context,"Reader Never Started",Toast.LENGTH_SHORT).show()
             }
 
+    }
+
+    private fun hasReadStoragePermission(): Boolean {
+        return EasyPermissions.hasPermissions(
+            requireContext(),
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+        )
+    }
+
+//    private fun hasWriteStoragePermission():Boolean{
+//        return EasyPermissions.hasPermissions(requireContext(),android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//    }
+
+    private fun readStorageTask() {
+        if (hasReadStoragePermission()) {
+
+            pickImage()
+            Toast.makeText(requireContext(), "Permission Granted, Thank You!", Toast.LENGTH_SHORT)
+                .show()
 
 
+        } else {
+            EasyPermissions.requestPermissions(
+                requireActivity(),
+                "Jott Notes needs storage permission",
+                READ_STORAGE_PERM,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+
+            )
+        }
+
+    }
+
+    private fun pickImage() {
+//        var intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+//
+//        intent.setType("image/*")
+//        if (intent.resolveActivity(requireActivity().packageManager) != null){
+//            startActivityForResult(intent,REQUEST_CODE_IMAGE)
+//        }
+
+        var intent = Intent()
+        intent.type = "image/*"
+        intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+
+        //intent.setAction(Intent.ACTION_GET_CONTENT)
+        startActivityForResult(Intent.createChooser(intent, "Image"), REQUEST_CODE_IMAGE)
+    }
+
+    private fun getUriOfImage(contentUri: Uri): String? {
+        var filePath: String? = null
+        var cursor = requireActivity().contentResolver.query(contentUri, null, null, null, null)
+        if (cursor == null){
+            filePath = contentUri.path
+        }else{
+            cursor.moveToFirst()
+            var index = cursor.getColumnIndex("_data")
+            filePath= cursor.getString(index)
+            cursor.close()
+        }
+        return filePath
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_IMAGE && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                var selectedImageUrl = data.data
+                if (selectedImageUrl != null) {
+                    try {
+
+                        var inputStream =
+                            requireActivity().contentResolver.openInputStream(selectedImageUrl)
+                        var bitmap = BitmapFactory.decodeStream(inputStream)
+                        imagePage2.setImageBitmap(bitmap)
+                        imagePage2.visibility = View.VISIBLE
+                        imagePath = getUriOfImage(selectedImageUrl)!!
+
+                    } catch (e: Exception) {
+                        Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            }
+
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        EasyPermissions.onRequestPermissionsResult(
+            requestCode,
+            permissions,
+            grantResults,
+            requireActivity()
+        )
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+
+    }
+
+    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(requireActivity(), perms)) {
+            AppSettingsDialog.Builder(requireActivity()).build().show()
+        }
+    }
+
+    override fun onRationaleAccepted(requestCode: Int) {
+
+    }
+
+    override fun onRationaleDenied(requestCode: Int) {
 
     }
 

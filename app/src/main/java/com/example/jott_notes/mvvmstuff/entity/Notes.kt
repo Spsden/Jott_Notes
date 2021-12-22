@@ -12,11 +12,11 @@ class Notes(
 
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
-
     var title: String,
     var notesdesc: String,
     var date:String,
-    var color: Int
+    var color: Int,
+    var image:String
     //var prioritycolor:String
 //    var image_path:String,
 //    var web_link:String
